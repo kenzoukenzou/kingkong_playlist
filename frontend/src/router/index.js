@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VideoList from '@/components/VideoList'
-
+import VideoShow from '@/components/VideoShow'
 
 Vue.use(VueRouter)
 
@@ -10,6 +10,11 @@ Vue.use(VueRouter)
     path: '/',
     name: 'Home',
     component: VideoList
+  },
+  {
+    path: '/videos/:id(\\d+)',
+    name: 'VideoShow',
+    component: VideoShow
   },
 ]
 

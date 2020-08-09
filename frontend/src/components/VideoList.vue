@@ -33,12 +33,14 @@
                 Share
               </v-btn>
         
-              <v-btn
-                color="orange"
-                text
-              >
-                Explore
-              </v-btn>
+                <router-link :to="{ name: 'VideoShow', params: { id: 1 } }">
+                  <v-btn
+                    color="orange"
+                    text
+                  >
+                    Explore
+                  </v-btn>
+                </router-link>
             </v-card-actions>
           </v-card>
         </v-col>
