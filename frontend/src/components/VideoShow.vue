@@ -4,11 +4,12 @@
       <iframe
         width="560"
         height="315"
-        src="https://www.youtube.com/embed/1mszH5OqU5k"
+        :src="video.embed_url"
         frameborder="0"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen>
       </iframe>
+      <p class="font-weight-bold">{{ video.title }}</p>
     </v-col>
     <v-col>
       <v-form>
@@ -25,7 +26,21 @@
 
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'VideoShow',
+  data() {
+    return {
+      video: {}
+    }
+  },
+  mounted() {
+    axios
+      .get(`${process.env.VUE_APP_ENDPOINT}/v1/videos/${this.$route.params.id}`)
+      .then(res => {
+        this.video = res.data;
+      })
+  }
 }
 </script>
