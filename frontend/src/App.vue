@@ -2,28 +2,19 @@
   <v-app>
     <v-main>
       <Navbar />
-      <VideoList/>
+      <router-view/>
     </v-main>
     <Footer />
   </v-app>
 </template>
 
 <script>
-import VideoList from './components/VideoList';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import Navbar from '@/components/Navbar';
 
 export default {
-  name: 'App',
-
   components: {
-    VideoList,
     Navbar,
-    Footer,
-  },
+  }
+}
 
-  data: () => ({
-    //
-  }),
-};
 </script>
