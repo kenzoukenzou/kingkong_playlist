@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_09_141330) do
+ActiveRecord::Schema.define(version: 2020_08_09_144129) do
 
   create_table "videos", force: :cascade do |t|
     t.string "title", null: false
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2020_08_09_141330) do
     t.string "thumbnail"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "embed_url"
   end
 
 end
