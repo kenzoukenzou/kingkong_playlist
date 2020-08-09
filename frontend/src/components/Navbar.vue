@@ -5,7 +5,7 @@
     >
     <v-spacer></v-spacer>
     
-    <router-link :to="{ name: 'VideoList' }" class="white--text text-decoration-none">
+    <router-link :to="{ name: 'Home' }" class="white--text text-decoration-none">
       <v-toolbar-title class="font-weight-bold">キングコングプレイリスト </v-toolbar-title>
     </router-link>
     
