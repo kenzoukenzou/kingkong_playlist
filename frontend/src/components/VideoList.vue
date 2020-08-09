@@ -49,6 +49,6 @@
 
 <script>
   export default {
-    name: 'HelloWorld',
+    name: 'VideoList',
   }
 </script>
