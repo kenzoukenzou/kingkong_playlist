@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_09_133148) do
+ActiveRecord::Schema.define(version: 2020_08_09_141330) do
 
   create_table "videos", force: :cascade do |t|
     t.string "title", null: false
-    t.string "url", null: false
+    t.string "youtube_key", null: false
     t.string "thumbnail"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
