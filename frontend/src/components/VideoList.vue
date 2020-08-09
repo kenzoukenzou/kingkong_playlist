@@ -6,13 +6,15 @@
             class="mx-auto"
             max-width="400"
           >
-          <v-img
-            class="white--text align-end"
-            height="200px"
-            :src="video.thumbnail"
-          >
-            <v-card-title>{{ video.title }}</v-card-title>
-          </v-img>
+          <router-link :to="{ name: 'VideoShow', params: { id: video.id } }">
+            <v-img
+              class="white--text align-end"
+              height="200px"
+              :src="video.thumbnail"
+            >
+              <v-card-title>{{ video.title }}</v-card-title>
+            </v-img>
+          </router-link>
           <v-card-subtitle class="pb-0">Number 10</v-card-subtitle>
           <v-card-text class="text--primary">
             <div>Whitehaven Beach</div>
