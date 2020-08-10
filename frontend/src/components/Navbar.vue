@@ -17,11 +17,20 @@
         style="height: 350px"
       >
         <v-list-item-group color="primary">
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title>このサイトについて</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
+          <router-link :to="{ name: 'About' }">
+            <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title>このサイトについて</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
+          </router-link>
+          <router-link :to="{ name: 'VideoNew' }">
+            <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title>動画登録</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
+          </router-link>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
