@@ -22,7 +22,7 @@
             </v-list-item>
           </router-link>
 
-          <router-link :to="{ name: 'VideoNew' }" v-if="user.uid">
+          <router-link :to="{ name: 'VideoNew' }" v-if="user">
             <v-list-item>
                 <v-list-item-content>
                   <v-list-item-title>動画登録</v-list-item-title>
@@ -31,7 +31,7 @@
           </router-link>
 
           <!-- ログイン, ログアウト -->
-          <v-list-item @click="signOut" v-if="user.uid" >
+          <v-list-item @click="signOut" v-if="user" >
             <v-list-item-content>
               <v-list-item-title>ログアウト</v-list-item-title>
             </v-list-item-content>
@@ -58,17 +58,7 @@ export default {
   data() {
     return {
       drawer: false,
-      user: {}
     }
-  },
-  mounted() {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.user = user;
-      } else {
-        this.user = {};
-      }
-    })
   },
   methods: {
     signOut() {
@@ -78,6 +68,11 @@ export default {
         console.log(error);
       })
     }
-  }
+  },
+  computed: {
+    user() {
+      return this.$store.state.currentUser;
+    }
+  },
 }
 </script>
