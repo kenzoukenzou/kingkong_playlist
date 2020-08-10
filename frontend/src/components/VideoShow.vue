@@ -89,6 +89,8 @@ export default {
       axios
         .post(`${process.env.VUE_APP_ENDPOINT}/v1/bookmarks`, {...this.bookmark, ...{ video_id: this.video.id }})
         .then(() => {
+          this.updateBookmarks();
+
           this.bookmark.time = 0;
           this.bookmark.content = '';
           this.player.playVideo();
@@ -98,6 +100,13 @@ export default {
       this.player.pauseVideo();
       this.player.seekTo(time);
       this.player.playVideo();
+    },
+    updateBookmarks() {
+      axios
+        .get(`${process.env.VUE_APP_ENDPOINT}/v1/videos/${this.$route.params.id}`)
+        .then(res => {
+          this.video.bookmarks = res.data.bookmarks;
+        })
     }
   }
 }
