@@ -1,5 +1,6 @@
 <template>
   <v-form class="mt-3">
+    <p class="grey--text">管理者以外はログインできません。</p>
     <v-text-field
       label="Email"
       v-model="email"

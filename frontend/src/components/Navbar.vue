@@ -21,13 +21,29 @@
                 </v-list-item-content>
             </v-list-item>
           </router-link>
-          <router-link :to="{ name: 'VideoNew' }">
+
+          <router-link :to="{ name: 'VideoNew' }" v-if="user.uid">
             <v-list-item>
                 <v-list-item-content>
                   <v-list-item-title>動画登録</v-list-item-title>
                 </v-list-item-content>
             </v-list-item>
           </router-link>
+
+          <!-- ログイン, ログアウト -->
+          <v-list-item @click="signOut" v-if="user.uid" >
+            <v-list-item-content>
+              <v-list-item-title>ログアウト</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <router-link :to="{ name: 'Login' }" v-else>
+            <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title>ログイン</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
+          </router-link>
+
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
@@ -35,11 +51,32 @@
 </template>
 
 <script>
+import firebase from '@/plugins/firebase'
+
 export default {
   name: 'Navbar',
   data() {
     return {
-      drawer: false
+      drawer: false,
+      user: {}
+    }
+  },
+  mounted() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.user = user;
+      } else {
+        this.user = {};
+      }
+    })
+  },
+  methods: {
+    signOut() {
+      firebase.auth().signOut().then(() => {
+        this.$router.push('/login');
+      }).catch((error) =>{
+        console.log(error);
+      })
     }
   }
 }
