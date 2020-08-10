@@ -13,20 +13,25 @@
       <v-col>
 
         <!-- Bookmarks -->
-        <v-list>
-          <v-list-item-group color="primary">
-            <v-list-item
-              v-for="bookmark in video.bookmarks"
-              :key="bookmark.id"
-              @click="startOnTime(bookmark.time)"
-            >
-              <v-list-item-content>
-                <v-list-item-subtitle class="grey--text">{{ bookmark.time | formatTime }}</v-list-item-subtitle>
-                <v-list-item-title>{{ bookmark.content }}</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list-item-group>
-        </v-list>
+        <div id="scroll-target" style="max-height: 350px" class="overflow-y-auto">
+          <v-list
+            v-scroll:#scroll-target="onScroll"
+            style="height: 350px"
+          >
+            <v-list-item-group color="primary">
+              <v-list-item
+                v-for="bookmark in video.bookmarks"
+                :key="bookmark.id"
+                @click="startOnTime(bookmark.time)"
+              >
+                <v-list-item-content>
+                  <v-list-item-subtitle class="grey--text">{{ bookmark.time | formatTime }}</v-list-item-subtitle>
+                  <v-list-item-title>{{ bookmark.content }}</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+          </v-list>
+        </div>
 
         <v-form @submit.prevent="addBookmark">
           <v-text-field
@@ -63,6 +68,7 @@ export default {
       palyerVars: {
         autoplay: 0
       },
+      offsetTop: 0,
     }
   },
   computed: {
@@ -107,7 +113,10 @@ export default {
         .then(res => {
           this.video.bookmarks = res.data.bookmarks;
         })
-    }
+    },
+    onScroll (e) {
+      this.offsetTop = e.target.scrollTop
+    },
   }
 }
 </script>
