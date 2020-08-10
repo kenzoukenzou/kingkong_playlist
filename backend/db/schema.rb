@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_10_063612) do
+ActiveRecord::Schema.define(version: 2020_08_10_065743) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.text "content", null: false
     t.integer "video_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "time"
     t.index ["video_id"], name: "index_bookmarks_on_video_id"
   end
 
