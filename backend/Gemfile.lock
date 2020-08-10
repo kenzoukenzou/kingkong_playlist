@@ -150,8 +150,6 @@ GEM
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    yt (0.32.6)
-      activesupport
     zeitwerk (2.4.0)
 
 PLATFORMS
@@ -170,7 +168,6 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   sqlite3 (~> 1.4)
   tzinfo-data
-  yt (~> 0.32.0)
 
 RUBY VERSION
    ruby 2.6.3p62
