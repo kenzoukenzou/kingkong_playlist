@@ -22,12 +22,12 @@
               <v-list-item
                 v-for="bookmark in video.bookmarks"
                 :key="bookmark.id"
-                @click="startOnTime(bookmark.time)"
               >
                 <v-list-item-content>
-                  <v-list-item-subtitle class="grey--text">{{ bookmark.time | formatTime }}</v-list-item-subtitle>
-                  <v-list-item-title>{{ bookmark.content }}</v-list-item-title>
+                  <v-list-item-subtitle @click="startOnTime(bookmark.time)" class="grey--text">{{ bookmark.time | formatTime }}</v-list-item-subtitle>
+                  <v-list-item-title @click="startOnTime(bookmark.time)">{{ bookmark.content }}</v-list-item-title>
                 </v-list-item-content>
+                <v-btn outlined @click="deleteBookmark(bookmark.id)">削除</v-btn>
               </v-list-item>
             </v-list-item-group>
           </v-list>
@@ -115,6 +115,13 @@ export default {
         .get(`${process.env.VUE_APP_ENDPOINT}/v1/videos/${this.$route.params.id}`)
         .then(res => {
           this.video.bookmarks = res.data.bookmarks;
+        })
+    },
+    deleteBookmark(id) {
+      axios
+        .delete(`${process.env.VUE_APP_ENDPOINT}/v1/bookmarks/${id}`)
+        .then(() => {
+          this.updateBookmarks();
         })
     },
     onScroll (e) {

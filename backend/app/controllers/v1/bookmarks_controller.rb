@@ -1,4 +1,6 @@
 class V1::BookmarksController < ApplicationController
+  before_action :set_bookmark, only: :destroy
+
   def create
     bookmark = Bookmark.new(bookmark_params)
     if bookmark.save
@@ -8,8 +10,16 @@ class V1::BookmarksController < ApplicationController
     end
   end
 
-  private
-  def bookmark_params
-    params.require(:bookmark).permit(:video_id, :content, :time)
+  def destroy
+    @bookmark.destroy
   end
+
+  private
+    def set_bookmark
+      @bookmark = Bookmark.find(params[:id])
+    end
+
+    def bookmark_params
+      params.require(:bookmark).permit(:video_id, :content, :time)
+    end
 end
