@@ -66,8 +66,10 @@ export default {
     addBookmark() {
       axios
         .post(`${process.env.VUE_APP_ENDPOINT}/v1/bookmarks`, this.bookmark)
-        .then(res => {
-          console.log(res.data);
+        .then(() => {
+          this.bookmark.time = 0;
+          this.bookmark.content = '';
+          this.player.playVideo();
         })
     }
   }
