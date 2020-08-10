@@ -4,6 +4,7 @@
       <youtube
         :video-id="video.youtube_key"
         ref="youtube"
+        :player-vars="palyerVars"
       >
       </youtube>
       <p class="font-weight-bold">{{ video.title }}</p>
@@ -32,6 +33,9 @@ export default {
   data() {
     return {
       video: {},
+      palyerVars: {
+        autoplay: 1
+      },
       currentTime: 0,
     }
   },
