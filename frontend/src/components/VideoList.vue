@@ -1,10 +1,9 @@
 <template>
   <div>
     <v-row>
-      <v-col v-for="video in videos" :key="video.id">
+      <v-col class="col-lg-3 col-md-4" v-for="video in videos" :key="video.id">
         <v-card
             class="mx-auto"
-            max-width="400"
           >
           <router-link :to="{ name: 'VideoShow', params: { id: video.id } }">
             <v-img
@@ -12,13 +11,11 @@
               height="200px"
               :src="video.thumbnail"
             >
-              <v-card-title>{{ video.title }}</v-card-title>
             </v-img>
           </router-link>
           <v-card-subtitle class="pb-0">Number 10</v-card-subtitle>
-          <v-card-text class="text--primary">
-            <div>Whitehaven Beach</div>
-            <div>Whitsunday Island, Whitsunday Islands</div>
+          <v-card-text class="text--primary pb-0">
+            <div>{{ video.title }}</div>
           </v-card-text>
           <v-card-actions>
             <v-btn
