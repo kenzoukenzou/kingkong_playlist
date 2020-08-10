@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VideoList from '@/components/VideoList'
 import VideoShow from '@/components/VideoShow'
+import VideoNew from '@/components/VideoNew'
 
 Vue.use(VueRouter)
 
@@ -16,6 +17,11 @@ Vue.use(VueRouter)
     name: 'VideoShow',
     component: VideoShow
   },
+  {
+    path: '/videos/new',
+    name: 'VideoNew',
+    component: VideoNew
+  }
 ]
 
 const router = new VueRouter({
