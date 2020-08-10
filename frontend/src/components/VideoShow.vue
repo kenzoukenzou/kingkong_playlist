@@ -1,14 +1,11 @@
 <template>
   <v-row>
     <v-col>
-      <iframe
-        width="560"
-        height="315"
-        :src="video.embed_url"
-        frameborder="0"
-        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-      </iframe>
+      <youtube
+        :video-id="video.youtube_key"
+        ref="youtube"
+      >
+      </youtube>
       <p class="font-weight-bold">{{ video.title }}</p>
     </v-col>
     <v-col>
