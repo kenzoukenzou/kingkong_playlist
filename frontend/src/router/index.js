@@ -5,6 +5,7 @@ import VideoShow from '@/components/VideoShow'
 import VideoNew from '@/components/VideoNew'
 import About from '@/components/About'
 import Login from '@/components/Login'
+import firebase from '../plugins/firebase'
 
 Vue.use(VueRouter)
 
@@ -22,7 +23,16 @@ Vue.use(VueRouter)
   {
     path: '/videos/new',
     name: 'VideoNew',
-    component: VideoNew
+    component: VideoNew,
+    beforeEnter: (to, from, next) => {
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          next()
+        } else {
+          next({ name: 'Login' })
+        }
+      })
+    },
   },
   {
     path: '/about',
