@@ -2,7 +2,8 @@
   <div>
     <v-form @submit="addVideo">
       <v-text-field
-        label="Youtube ID"
+        label="YoutubeID"
+        placeholder="https://youtube.com/xxx"
         required
         v-model="video.youtube_key"
       >
