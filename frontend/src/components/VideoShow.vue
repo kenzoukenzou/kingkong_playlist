@@ -33,7 +33,8 @@
           </v-list>
         </div>
 
-        <v-form @submit.prevent="addBookmark">
+        
+        <v-form @submit.prevent="addBookmark" class="mt-3">
           <v-text-field
             label="テキスト"
             required
@@ -41,8 +42,10 @@
             @focus="getCurrentTime"
           >
           </v-text-field>
-          <p class="grey--text">{{ bookmark.time | formatTime }}</p>
-          <v-btn dark class="font-weight-bold" type="submit">追加</v-btn>
+          <div class="d-flex justify-space-between pa-0 ma-0">
+            <p class="grey--text">{{ bookmark.time | formatTime }}</p>
+            <v-btn dark class="font-weight-bold" type="submit">追加</v-btn>
+          </div>
         </v-form>
       </v-col>
     </v-row>
