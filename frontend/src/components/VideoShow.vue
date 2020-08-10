@@ -1,28 +1,33 @@
 <template>
-  <v-row>
-    <v-col>
-      <youtube
-        :video-id="video.youtube_key"
-        ref="youtube"
-        :player-vars="palyerVars"
-      >
-      </youtube>
-      <p class="font-weight-bold">{{ video.title }}</p>
-    </v-col>
-    <v-col>
-      <v-form>
-        <v-text-field
-          label="テキスト"
-          required
-          v-model="bookmark.content"
-          @focus="getCurrentTime"
+  <div v-if="video.id">
+    <v-row>
+      <v-col>
+        <youtube
+          :video-id="video.youtube_key"
+          ref="youtube"
+          :player-vars="palyerVars"
         >
-        </v-text-field>
-        <p class="grey--text">{{ bookmark.time | formatTime }}</p>
-        <v-btn dark class="font-weight-bold" @click="addBookmark">追加</v-btn>
-      </v-form>
-    </v-col>
-  </v-row>
+        </youtube>
+        <p class="font-weight-bold">{{ video.title }}</p>
+      </v-col>
+      <v-col>
+        <v-form>
+          <v-text-field
+            label="テキスト"
+            required
+            v-model="bookmark.content"
+            @focus="getCurrentTime"
+          >
+          </v-text-field>
+          <p class="grey--text">{{ bookmark.time | formatTime }}</p>
+          <v-btn dark class="font-weight-bold" @click="addBookmark">追加</v-btn>
+        </v-form>
+      </v-col>
+    </v-row>
+  </div>
+  <div v-else>
+    <p class="grey--text text-center mt-4">お探しの動画は見つかりませんでした。</p>
+  </div>
 </template>
 
 
