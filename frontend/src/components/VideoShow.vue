@@ -13,8 +13,10 @@
         <v-text-field
           label="テキスト"
           required
+          @focus="getCurrentTime"
         >
         </v-text-field>
+        <p class="grey--text">{{ currentTime }}</p>
         <v-btn dark class="font-weight-bold">追加</v-btn>
       </v-form>
     </v-col>
@@ -29,7 +31,13 @@ export default {
   name: 'VideoShow',
   data() {
     return {
-      video: {}
+      video: {},
+      currentTime: 0,
+    }
+  },
+  computed: {
+    player() {
+      return this.$refs.youtube.player
     }
   },
   mounted() {
@@ -38,6 +46,14 @@ export default {
       .then(res => {
         this.video = res.data;
       })
+  },
+  methods: {
+    getCurrentTime() {
+      this.player.pauseVideo();
+      this.player.getCurrentTime().then(time => {
+        this.currentTime = time;
+      })
+    }
   }
 }
 </script>
