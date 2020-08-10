@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import VideoList from '@/components/VideoList'
 import VideoShow from '@/components/VideoShow'
 import VideoNew from '@/components/VideoNew'
+import About from '@/components/About'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ Vue.use(VueRouter)
     path: '/videos/new',
     name: 'VideoNew',
     component: VideoNew
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: About
   }
 ]
 

@@ -1,20 +1,46 @@
 <template>
-  <v-app-bar
-      app
-      dark
-    >
+  <nav>
+  <v-toolbar dark>
+    <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
     <v-spacer></v-spacer>
-    
     <router-link :to="{ name: 'Home' }" class="white--text text-decoration-none">
       <v-toolbar-title class="font-weight-bold">キングコングプレイリスト </v-toolbar-title>
     </router-link>
-    
     <v-spacer></v-spacer>
-  </v-app-bar>
+  </v-toolbar>
+
+    <v-navigation-drawer
+      v-model="drawer"
+      app>
+      <v-list>
+        <v-list-item-group color="primary">
+          <router-link :to="{ name: 'About' }">
+            <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title>このサイトについて</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
+          </router-link>
+          <router-link :to="{ name: 'VideoNew' }">
+            <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title>動画登録</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
+          </router-link>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
+  </nav>
 </template>
 
 <script>
 export default {
-  name: 'Navbar'
+  name: 'Navbar',
+  data() {
+    return {
+      drawer: false
+    }
+  }
 }
 </script>
