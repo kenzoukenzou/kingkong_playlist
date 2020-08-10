@@ -10,6 +10,6 @@ class V1::BookmarksController < ApplicationController
 
   private
   def bookmark_params
-    params.require(:bookmark).permit(:video_id, :content)
+    params.require(:bookmark).permit(:video_id, :content, :time)
   end
 end
