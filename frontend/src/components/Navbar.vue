@@ -12,10 +12,7 @@
     <v-navigation-drawer
       v-model="drawer"
       app>
-      <v-list
-        v-scroll:#scroll-target="onScroll"
-        style="height: 350px"
-      >
+      <v-list>
         <v-list-item-group color="primary">
           <router-link :to="{ name: 'About' }">
             <v-list-item>
