@@ -3,6 +3,7 @@ import App from './App.vue'
 import vuetify from './plugins/vuetify';
 import router from './router'
 import VueYoutube from 'vue-youtube'
+import moment from 'moment'
 
 Vue.config.productionTip = false
 Vue.use(VueYoutube)
@@ -14,6 +15,11 @@ Vue.filter('truncate', function(value, length){
   } else {
     return value.substring(0, 15) + '...';
   }
+})
+
+Vue.filter('formatTime', function(value){
+  const time = moment.utc(value*1000).format('HH:mm:ss');
+  return time;
 })
 
 new Vue({

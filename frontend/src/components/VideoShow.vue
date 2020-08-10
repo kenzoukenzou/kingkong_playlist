@@ -17,7 +17,7 @@
           @focus="getCurrentTime"
         >
         </v-text-field>
-        <p class="grey--text">{{ currentTime }}</p>
+        <p class="grey--text">{{ currentTime | formatTime }}</p>
         <v-btn dark class="font-weight-bold">追加</v-btn>
       </v-form>
     </v-col>
