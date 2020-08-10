@@ -1,14 +1,12 @@
 <template>
   <v-row>
     <v-col>
-      <iframe
-        width="560"
-        height="315"
-        :src="video.embed_url"
-        frameborder="0"
-        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-      </iframe>
+      <youtube
+        :video-id="video.youtube_key"
+        ref="youtube"
+        :player-vars="palyerVars"
+      >
+      </youtube>
       <p class="font-weight-bold">{{ video.title }}</p>
     </v-col>
     <v-col>
@@ -16,8 +14,10 @@
         <v-text-field
           label="テキスト"
           required
+          @focus="getCurrentTime"
         >
         </v-text-field>
+        <p class="grey--text">{{ currentTime | formatTime }}</p>
         <v-btn dark class="font-weight-bold">追加</v-btn>
       </v-form>
     </v-col>
@@ -32,7 +32,16 @@ export default {
   name: 'VideoShow',
   data() {
     return {
-      video: {}
+      video: {},
+      palyerVars: {
+        autoplay: 1
+      },
+      currentTime: 0,
+    }
+  },
+  computed: {
+    player() {
+      return this.$refs.youtube.player
     }
   },
   mounted() {
@@ -41,6 +50,14 @@ export default {
       .then(res => {
         this.video = res.data;
       })
+  },
+  methods: {
+    getCurrentTime() {
+      this.player.pauseVideo();
+      this.player.getCurrentTime().then(time => {
+        this.currentTime = time;
+      })
+    }
   }
 }
 </script>
