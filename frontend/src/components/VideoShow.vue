@@ -18,6 +18,7 @@
             <v-list-item
               v-for="bookmark in video.bookmarks"
               :key="bookmark.id"
+              @click="startOnTime(bookmark.time)"
             >
               <v-list-item-content>
                 <v-list-item-subtitle class="grey--text">{{ bookmark.time | formatTime }}</v-list-item-subtitle>
@@ -92,6 +93,11 @@ export default {
           this.bookmark.content = '';
           this.player.playVideo();
         })
+    },
+    startOnTime(time) {
+      this.player.pauseVideo();
+      this.player.seekTo(time);
+      this.player.playVideo();
     }
   }
 }
