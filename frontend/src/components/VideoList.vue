@@ -13,7 +13,7 @@
             >
             </v-img>
           </router-link>
-          <v-card-subtitle class="pb-0">Number 10</v-card-subtitle>
+          <v-card-subtitle class="pb-0">{{ video.published_at | formatDateTime }}</v-card-subtitle>
           <v-card-text class="text--primary pb-0">
             <div>{{ video.title | truncate(15) }}</div>
           </v-card-text>
