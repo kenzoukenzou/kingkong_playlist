@@ -11,6 +11,23 @@
         <p class="font-weight-bold">{{ video.title }}</p>
       </v-col>
       <v-col>
+
+        <!-- Bookmarks -->
+        <v-list>
+          <v-list-item-group color="primary">
+            <v-list-item
+              v-for="bookmark in video.bookmarks"
+              :key="bookmark.id"
+              @click="startOnTime(bookmark.time)"
+            >
+              <v-list-item-content>
+                <v-list-item-subtitle class="grey--text">{{ bookmark.time | formatTime }}</v-list-item-subtitle>
+                <v-list-item-title>{{ bookmark.content }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-item-group>
+        </v-list>
+
         <v-form @submit.prevent="addBookmark">
           <v-text-field
             label="テキスト"
@@ -44,7 +61,7 @@ export default {
         time: 0,
       },
       palyerVars: {
-        autoplay: 1
+        autoplay: 0
       },
     }
   },
@@ -76,6 +93,11 @@ export default {
           this.bookmark.content = '';
           this.player.playVideo();
         })
+    },
+    startOnTime(time) {
+      this.player.pauseVideo();
+      this.player.seekTo(time);
+      this.player.playVideo();
     }
   }
 }

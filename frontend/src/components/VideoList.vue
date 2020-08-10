@@ -18,12 +18,6 @@
             <div>{{ video.title | truncate(15) }}</div>
           </v-card-text>
           <v-card-actions>
-            <v-btn
-              color="orange"
-              text
-            >
-              Share
-            </v-btn>
               <router-link :to="{ name: 'VideoShow', params: { id: video.id } }">
                 <v-btn
                   color="orange"
