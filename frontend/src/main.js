@@ -22,6 +22,11 @@ Vue.filter('formatTime', function(value){
   return time;
 })
 
+Vue.filter('formatDateTime', function(value){
+  const datetime = moment(value).format("YYYY/MM/DD"); 
+  return datetime;
+})
+
 new Vue({
   vuetify,
   router,
