@@ -27,14 +27,13 @@
                   <v-list-item-subtitle @click="startOnTime(bookmark.time)" class="grey--text">{{ bookmark.time | formatTime }}</v-list-item-subtitle>
                   <v-list-item-title @click="startOnTime(bookmark.time)">{{ bookmark.content }}</v-list-item-title>
                 </v-list-item-content>
-                <v-btn outlined @click="deleteBookmark(bookmark.id)">削除</v-btn>
+                <v-btn outlined @click="deleteBookmark(bookmark.id)" v-if="user">削除</v-btn>
               </v-list-item>
             </v-list-item-group>
           </v-list>
         </v-card>
-
         
-        <v-form @submit.prevent="addBookmark" class="mt-3">
+        <v-form @submit.prevent="addBookmark" class="mt-3" v-if="user">
           <v-text-field
             label="テキスト"
             required
@@ -77,6 +76,9 @@ export default {
   computed: {
     player() {
       return this.$refs.youtube.player
+    },
+    user() {
+      return this.$store.state.currentUser;
     }
   },
   mounted() {
@@ -127,6 +129,6 @@ export default {
     onScroll (e) {
       this.offsetTop = e.target.scrollTop
     },
-  }
+  },
 }
 </script>
