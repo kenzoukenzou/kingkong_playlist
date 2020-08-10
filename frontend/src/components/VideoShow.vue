@@ -11,6 +11,10 @@
         <p class="font-weight-bold">{{ video.title }}</p>
       </v-col>
       <v-col>
+        <p v-for="bookmark in video.bookmarks" :key="bookmark.id">
+          <a href="">{{ bookmark.time | formatTime }}</a>
+          {{ bookmark.content }}
+        </p>
         <v-form @submit.prevent="addBookmark">
           <v-text-field
             label="テキスト"
@@ -44,7 +48,7 @@ export default {
         time: 0,
       },
       palyerVars: {
-        autoplay: 1
+        autoplay: 0
       },
     }
   },
