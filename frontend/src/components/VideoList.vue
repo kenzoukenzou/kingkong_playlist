@@ -15,7 +15,7 @@
           </router-link>
           <v-card-subtitle class="pb-0">Number 10</v-card-subtitle>
           <v-card-text class="text--primary pb-0">
-            <div>{{ video.title }}</div>
+            <div>{{ video.title | truncate(15) }}</div>
           </v-card-text>
           <v-card-actions>
             <v-btn
