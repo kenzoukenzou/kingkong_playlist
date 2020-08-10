@@ -11,10 +11,22 @@
         <p class="font-weight-bold">{{ video.title }}</p>
       </v-col>
       <v-col>
-        <p v-for="bookmark in video.bookmarks" :key="bookmark.id">
-          <a href="">{{ bookmark.time | formatTime }}</a>
-          {{ bookmark.content }}
-        </p>
+
+        <!-- Bookmarks -->
+        <v-list>
+          <v-list-item-group color="primary">
+            <v-list-item
+              v-for="bookmark in video.bookmarks"
+              :key="bookmark.id"
+            >
+              <v-list-item-content>
+                <v-list-item-subtitle class="grey--text">{{ bookmark.time | formatTime }}</v-list-item-subtitle>
+                <v-list-item-title>{{ bookmark.content }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-item-group>
+        </v-list>
+
         <v-form @submit.prevent="addBookmark">
           <v-text-field
             label="テキスト"
