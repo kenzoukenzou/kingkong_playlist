@@ -4,12 +4,9 @@ import vuetify from './plugins/vuetify'
 import router from './router'
 import VueYoutube from 'vue-youtube'
 import moment from 'moment'
-import { store } from './store/store'
-import authCheck from './plugins/authCheck'
 
 Vue.config.productionTip = false
 Vue.use(VueYoutube)
-Vue.use(authCheck)
 
 // Filters
 Vue.filter('truncate', function(value, length){
@@ -29,7 +26,6 @@ Vue.filter('formatDateTime', function(value){
 })
 
 new Vue({
-  store: store,
   vuetify,
   router,
   render: h => h(App)
