@@ -2,13 +2,14 @@
 #
 # Table name: videos
 #
-#  id          :integer          not null, primary key
-#  title       :string           not null
-#  youtube_key :string           not null
-#  thumbnail   :string
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  embed_url   :string
+#  id           :integer          not null, primary key
+#  title        :string           not null
+#  youtube_key  :string           not null
+#  thumbnail    :string
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  embed_url    :string
+#  published_at :datetime
 #
 
 class Video < ApplicationRecord
@@ -44,5 +45,6 @@ class Video < ApplicationRecord
       self.title = result_hash['items'][0]['snippet']['title']
       self.thumbnail = result_hash['items'][0]['snippet']['thumbnails']['medium']['url']
       self.embed_url = "https://www.youtube.com/embed/#{self.youtube_key}"
+      self.published_at = result_hash['items'][0]['snippet']['publishedAt']
     end
 end
