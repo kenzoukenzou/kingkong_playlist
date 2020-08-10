@@ -1,5 +1,5 @@
 class V1::VideosController < ApplicationController
-  before_action :set_video, only: :show
+  before_action :set_video, only: %i[show destroy]
 
   def index
     videos = Video.order(:id)
@@ -17,6 +17,10 @@ class V1::VideosController < ApplicationController
     else
       render json: { errors: video.errors.full_messages }, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @video.destroy
   end
 
   private
