@@ -14,11 +14,12 @@
         <v-text-field
           label="テキスト"
           required
+          v-model="bookmark.content"
           @focus="getCurrentTime"
         >
         </v-text-field>
-        <p class="grey--text">{{ currentTime | formatTime }}</p>
-        <v-btn dark class="font-weight-bold">追加</v-btn>
+        <p class="grey--text">{{ bookmark.time | formatTime }}</p>
+        <v-btn dark class="font-weight-bold" @click="addBookmark">追加</v-btn>
       </v-form>
     </v-col>
   </v-row>
@@ -33,10 +34,14 @@ export default {
   data() {
     return {
       video: {},
+      bookmark: {
+        video_id: this.$route.params.id,
+        content: '',
+        time: 0,
+      },
       palyerVars: {
         autoplay: 1
       },
-      currentTime: 0,
     }
   },
   computed: {
@@ -55,8 +60,15 @@ export default {
     getCurrentTime() {
       this.player.pauseVideo();
       this.player.getCurrentTime().then(time => {
-        this.currentTime = time;
+        this.bookmark.time = time;
       })
+    },
+    addBookmark() {
+      axios
+        .post(`${process.env.VUE_APP_ENDPOINT}/v1/bookmarks`, this.bookmark)
+        .then(res => {
+          console.log(res.data);
+        })
     }
   }
 }
