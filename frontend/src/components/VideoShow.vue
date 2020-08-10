@@ -11,7 +11,7 @@
         <p class="font-weight-bold">{{ video.title }}</p>
       </v-col>
       <v-col>
-        <v-form>
+        <v-form @submit.prevent="addBookmark">
           <v-text-field
             label="テキスト"
             required
@@ -20,7 +20,7 @@
           >
           </v-text-field>
           <p class="grey--text">{{ bookmark.time | formatTime }}</p>
-          <v-btn dark class="font-weight-bold" @click="addBookmark">追加</v-btn>
+          <v-btn dark class="font-weight-bold" type="submit">追加</v-btn>
         </v-form>
       </v-col>
     </v-row>
