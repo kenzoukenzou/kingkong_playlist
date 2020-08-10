@@ -15,6 +15,7 @@
 class Video < ApplicationRecord
   validates :title, :youtube_key, presence: true
   validates :youtube_key, uniqueness: true
+  has_many :bookmarks
 
   require 'net/http'
   YOUTUBE_ENDPOINT = 'https://www.googleapis.com/youtube/v3/videos'
