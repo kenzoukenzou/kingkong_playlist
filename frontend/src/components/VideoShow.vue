@@ -40,7 +40,6 @@ export default {
     return {
       video: {},
       bookmark: {
-        video_id: this.$route.params.id,
         content: '',
         time: 0,
       },
@@ -69,8 +68,9 @@ export default {
       })
     },
     addBookmark() {
+      // @see https://flaviocopes.com/how-to-merge-objects-javascript/
       axios
-        .post(`${process.env.VUE_APP_ENDPOINT}/v1/bookmarks`, this.bookmark)
+        .post(`${process.env.VUE_APP_ENDPOINT}/v1/bookmarks`, {...this.bookmark, ...{ video_id: this.video.id }})
         .then(() => {
           this.bookmark.time = 0;
           this.bookmark.content = '';
