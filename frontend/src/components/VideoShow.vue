@@ -13,7 +13,7 @@
       <v-col>
 
         <!-- Bookmarks -->
-        <div id="scroll-target" style="max-height: 350px" class="overflow-y-auto">
+        <v-card outlined id="scroll-target" style="max-height: 350px" class="overflow-y-auto">
           <v-list
             v-scroll:#scroll-target="onScroll"
             style="height: 350px"
@@ -31,9 +31,10 @@
               </v-list-item>
             </v-list-item-group>
           </v-list>
-        </div>
+        </v-card>
 
-        <v-form @submit.prevent="addBookmark">
+        
+        <v-form @submit.prevent="addBookmark" class="mt-3">
           <v-text-field
             label="テキスト"
             required
@@ -41,8 +42,10 @@
             @focus="getCurrentTime"
           >
           </v-text-field>
-          <p class="grey--text">{{ bookmark.time | formatTime }}</p>
-          <v-btn dark class="font-weight-bold" type="submit">追加</v-btn>
+          <div class="d-flex justify-space-between pa-0 ma-0">
+            <p class="grey--text">{{ bookmark.time | formatTime }}</p>
+            <v-btn dark class="font-weight-bold" type="submit">追加</v-btn>
+          </div>
         </v-form>
       </v-col>
     </v-row>
