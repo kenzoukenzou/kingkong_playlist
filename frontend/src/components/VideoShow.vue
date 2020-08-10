@@ -13,7 +13,7 @@
       <v-col>
 
         <!-- Bookmarks -->
-        <div id="scroll-target" style="max-height: 350px" class="overflow-y-auto">
+        <v-card outlined id="scroll-target" style="max-height: 350px" class="overflow-y-auto">
           <v-list
             v-scroll:#scroll-target="onScroll"
             style="height: 350px"
@@ -31,7 +31,7 @@
               </v-list-item>
             </v-list-item-group>
           </v-list>
-        </div>
+        </v-card>
 
         
         <v-form @submit.prevent="addBookmark" class="mt-3">
