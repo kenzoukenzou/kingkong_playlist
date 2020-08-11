@@ -22,27 +22,40 @@
             </v-list-item>
           </router-link>
 
-          <router-link :to="{ name: 'VideoNew' }" v-if="user">
-            <v-list-item>
-                <v-list-item-content>
-                  <v-list-item-title>動画登録</v-list-item-title>
-                </v-list-item-content>
-            </v-list-item>
-          </router-link>
+          <template v-if="user">
+            <router-link :to="{ name: 'VideoNew' }">
+              <v-list-item>
+                  <v-list-item-content>
+                    <v-list-item-title>動画登録</v-list-item-title>
+                  </v-list-item-content>
+              </v-list-item>
+            </router-link>
 
-          <!-- ログイン, ログアウト -->
-          <v-list-item @click="signOut" v-if="user" >
-            <v-list-item-content>
-              <v-list-item-title>ログアウト</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <router-link :to="{ name: 'Login' }" v-else>
-            <v-list-item>
-                <v-list-item-content>
-                  <v-list-item-title>ログイン</v-list-item-title>
-                </v-list-item-content>
+            <router-link :to="{ name: 'PlaylistNew' }">
+              <v-list-item>
+                  <v-list-item-content>
+                    <v-list-item-title>プレイリスト作成</v-list-item-title>
+                  </v-list-item-content>
+              </v-list-item>
+            </router-link>
+
+            <!-- ログイン, ログアウト -->
+            <v-list-item @click="signOut">
+              <v-list-item-content>
+                <v-list-item-title>ログアウト</v-list-item-title>
+              </v-list-item-content>
             </v-list-item>
-          </router-link>
+          </template>
+
+          <template v-else>
+            <router-link :to="{ name: 'Login' }">
+              <v-list-item>
+                  <v-list-item-content>
+                    <v-list-item-title>ログイン</v-list-item-title>
+                  </v-list-item-content>
+              </v-list-item>
+            </router-link>
+          </template>
 
         </v-list-item-group>
       </v-list>
