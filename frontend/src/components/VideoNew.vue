@@ -44,7 +44,7 @@ export default {
       axios
         .post(`${process.env.VUE_APP_ENDPOINT}/v1/videos`, this.video)
         .then(
-          this.$router.push({ name: 'Home' })
+          this.$router.push({ name: 'VideoNew' })
         )
     },
     deleteVideo: function(id) {
