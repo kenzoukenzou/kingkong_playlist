@@ -16,4 +16,19 @@
 バックエンドはHerokuにデプロイし、フロントはFirebaseにデプロイをしています。
 なお、認証はFierbase Authenticationを使用しています。
 
+## 環境構築
 
+```shell
+# Backend
+$ cd backend/
+$ rails db:create db:migrate
+$ bundle install
+$ rails s
+```
+
+```shell
+# Frontend
+$ cd frontend/
+$ yarn
+$ npm run serve
+```
