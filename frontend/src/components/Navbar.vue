@@ -1,13 +1,13 @@
 <template>
   <nav>
-    <v-toolbar dark>
+    <v-app-bar dark app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-spacer></v-spacer>
       <router-link :to="{ name: 'Home' }" class="white--text text-decoration-none">
         <v-toolbar-title class="font-weight-bold">キングコングプレイリスト </v-toolbar-title>
       </router-link>
       <v-spacer></v-spacer>
-    </v-toolbar>
+    </v-app-bar>
 
     <v-navigation-drawer
       v-model="drawer"
