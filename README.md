@@ -10,10 +10,16 @@
 
 ## 使用技術
 
-- バックエンド：Ruby on Rails APIモード
-- フロントエンド：Vue.js
+- バックエンド：
+  - Ruby on Rails APIモード
+  - SQLite(開発環境)
+  - Postgresql(本番)
+  - Heroku
+- フロントエンド：
+  - Vue.js
+  - Vuetify
+  - Firebase
 
-バックエンドはHerokuにデプロイし、フロントはFirebaseにデプロイをしています。
 なお、認証はFierbase Authenticationを使用しています。
 
 ## 環境構築
