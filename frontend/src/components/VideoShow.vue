@@ -50,7 +50,7 @@
     </v-row>
   </div>
   <div v-else>
-    <p class="grey--text text-center mt-4">お探しの動画は見つかりませんでした。</p>
+    <p class="grey--text text-center mt-4">Loading...</p>
   </div>
 </template>
 
