@@ -18,7 +18,7 @@
           <v-list-item-content>
             <v-list-item-title>{{ playlist.title }}</v-list-item-title>
           </v-list-item-content>
-          <v-btn>削除</v-btn>
+          <v-btn @click="deletePlaylist(playlist.id)">削除</v-btn>
         </v-list-item>
       </v-list-item-group>
     </v-list>
@@ -39,14 +39,32 @@ export default {
     }
   },
   name: 'PlaylistNew',
+  mounted() {
+    this.updatePlaylists();
+  },
   methods: {
     addPlaylist() {
       axios
         .post(`${process.env.VUE_APP_ENDPOINT}/v1/playlists`, this.playlist)
-        .then(
-          // console.log('Success!')
-        )
+        .then(() => {
+          this.playlist.title = '';
+          this.updatePlaylists();
+        })
     },
+    updatePlaylists() {
+      axios
+        .get(`${process.env.VUE_APP_ENDPOINT}/v1/playlists`)
+        .then((res) => {
+          this.playlists = res.data;
+        })
+    },
+    deletePlaylist(id) {
+      axios
+        .delete(`${process.env.VUE_APP_ENDPOINT}/v1/playlists/${id}`)
+        .then(() => {
+          this.updatePlaylists();
+        })
+    }
   }
 }
 </script>

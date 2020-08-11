@@ -1,6 +1,11 @@
 class V1::PlaylistsController < ApplicationController
   before_action :set_playlist, only: :destroy
 
+  def index
+    playlists = Playlist.order(:id)
+    render json: playlists
+  end
+
   def create
     playlist = Playlist.new(playlist_params)
     if playlist.save
@@ -11,6 +16,7 @@ class V1::PlaylistsController < ApplicationController
   end
 
   def destroy
+    @playlist.destroy
   end
 
   private
