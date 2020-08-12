@@ -4,6 +4,7 @@ import VideoList from '@/components/VideoList'
 import VideoShow from '@/components/VideoShow'
 import VideoNew from '@/components/VideoNew'
 import PlaylistNew from '@/components/PlaylistNew'
+import Playlists from '@/components/Playlists'
 import About from '@/components/About'
 import Login from '@/components/Login'
 import firebase from '../plugins/firebase'
@@ -15,6 +16,11 @@ Vue.use(VueRouter)
     path: '/',
     name: 'Home',
     component: VideoList
+  },
+  {
+    path: '/playlists',
+    name: 'Playlists',
+    component: Playlists
   },
   {
     path: '/videos/:id(\\d+)',
