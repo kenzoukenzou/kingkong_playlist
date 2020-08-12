@@ -3,7 +3,7 @@
     <v-row v-if="playlist.videos">
       <v-col>
         <youtube
-          :video-id="playlist.videos[0].youtube_key"
+          :video-id="playVideoId"
           ref="youtube"
         >
         </youtube>
@@ -18,7 +18,8 @@ export default {
   name: 'PlaylistShow',
   data() {
     return {
-      playlist: {}
+      playlist: {},
+      playVideoId: '',
     }
   },
   mounted() {
@@ -26,6 +27,7 @@ export default {
       .get(`${process.env.VUE_APP_ENDPOINT}/v1/playlists/${this.$route.params.id}`)
       .then(res => {
         this.playlist = res.data;
+        this.playVideoId = res.data.videos[0].youtube_key;
       })
   }
 }
