@@ -15,7 +15,7 @@ class Playlist < ApplicationRecord
   has_many :bookmarks
   has_many :videos, through: :bookmarks
 
-  def set_first_bookmark_thumbnail
-    update(thumbnail: bookmarks.first.video.thumbnail)
+  def set_first_video_thumbnail
+    update(thumbnail: videos.first.thumbnail)
   end
 end

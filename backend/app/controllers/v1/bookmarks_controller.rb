@@ -5,7 +5,7 @@ class V1::BookmarksController < ApplicationController
     bookmark = Bookmark.new(bookmark_params)
     
     if bookmark.save
-      bookmark.playlist.set_first_bookmark_thumbnail if bookmark.playlist.present?
+      bookmark.playlist.set_first_video_thumbnail if bookmark.playlist.present?
       render json: bookmark, status: :created
     else
       render json: { errors: bookmark.errors.full_messages }, status: :unprocessable_entity
