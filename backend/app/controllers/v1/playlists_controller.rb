@@ -1,9 +1,13 @@
 class V1::PlaylistsController < ApplicationController
-  before_action :set_playlist, only: :destroy
+  before_action :set_playlist, only: %i[destroy show]
 
   def index
     playlists = Playlist.order(:id)
     render json: playlists
+  end
+
+  def show
+    render json: @playlist, include: [bookmarks: { include: [:video] }]
   end
 
   def create
