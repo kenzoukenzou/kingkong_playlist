@@ -24,9 +24,9 @@
                 :key="bookmark.id"
               >
                 <v-list-item-content>
-                  <v-list-item-subtitle @click="startOnTime(bookmark.time)" class="grey--text">{{ bookmark.time | formatTime }}</v-list-item-subtitle>
+                  <v-list-item-subtitle @click="startOnTime(bookmark.time)" class="purple--text">{{ bookmark.time | formatTime }}</v-list-item-subtitle>
                   <v-list-item-title @click="startOnTime(bookmark.time)">{{ bookmark.content }}</v-list-item-title>
-                  <p>{{ bookmark.playlist.title }}</p>
+                  <v-list-item-subtitle>{{ bookmark.playlist.title }}</v-list-item-subtitle>
                 </v-list-item-content>
                 <v-btn outlined @click="deleteBookmark(bookmark.id)" v-if="user">削除</v-btn>
               </v-list-item>
@@ -35,6 +35,12 @@
         </v-card>
         
         <v-form @submit.prevent="addBookmark" class="mt-3" v-if="user">
+          <v-select
+            label="プレイリストを選択"
+            :items="playlists"
+            v-model="bookmark.playlist_id"
+          >
+          </v-select>
           <v-text-field
             label="テキスト"
             required
@@ -42,13 +48,6 @@
             @focus="getCurrentTime"
           >
           </v-text-field>
-          <v-select
-            label="プレイリストを選択"
-            :items="playlists"
-            v-model="bookmark.playlist_id"
-          >
-          </v-select>
-
           <div class="d-flex justify-space-between pa-0 ma-0">
             <p class="grey--text">{{ bookmark.time | formatTime }}</p>
             <v-btn dark class="font-weight-bold" type="submit">追加</v-btn>
