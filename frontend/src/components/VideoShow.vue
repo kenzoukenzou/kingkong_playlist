@@ -41,6 +41,12 @@
             @focus="getCurrentTime"
           >
           </v-text-field>
+
+          <v-select
+            label="プレイリストを選択"
+          >
+          </v-select>
+
           <div class="d-flex justify-space-between pa-0 ma-0">
             <p class="grey--text">{{ bookmark.time | formatTime }}</p>
             <v-btn dark class="font-weight-bold" type="submit">追加</v-btn>
@@ -63,9 +69,11 @@ export default {
   data() {
     return {
       video: {},
+      playlists: [],
       bookmark: {
         content: '',
         time: 0,
+        playlist_id: '',
       },
       palyerVars: {
         autoplay: 0
