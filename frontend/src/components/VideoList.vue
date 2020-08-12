@@ -1,5 +1,9 @@
 <template>
   <div>
+    <v-tabs centered>
+      <v-tab to="/">動画一覧</v-tab>
+      <v-tab to="/playlists">プレイリスト一覧</v-tab>
+    </v-tabs>
     <v-row>
       <v-col class="col-lg-3 col-md-4" v-for="video in videos" :key="video.id">
         <v-card
