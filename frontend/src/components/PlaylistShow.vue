@@ -1,6 +1,14 @@
 <template>
   <div>
-    
+    <v-row v-if="playlist.videos">
+      <v-col>
+        <youtube
+          :video-id="playlist.videos[0].youtube_key"
+          ref="youtube"
+        >
+        </youtube>
+      </v-col>
+    </v-row>    
   </div>
 </template>
 
