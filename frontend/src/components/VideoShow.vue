@@ -41,9 +41,9 @@
             @focus="getCurrentTime"
           >
           </v-text-field>
-
           <v-select
             label="プレイリストを選択"
+            :items="playlists"
           >
           </v-select>
 
@@ -95,10 +95,15 @@ export default {
       .then(res => {
         this.video = res.data;
       })
+    // Vuetifyのselectフィールドに合わせるため整形
     axios
       .get(`${process.env.VUE_APP_ENDPOINT}/v1/playlists`)
       .then((res) => {
-        this.playlists = res.data;
+        res.data.map((item) => {
+          this.playlists.push(
+            { text: item.title, value: item.id }
+          )
+        })
       })
   },
   methods: {
