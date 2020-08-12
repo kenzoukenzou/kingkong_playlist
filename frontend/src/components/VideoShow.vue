@@ -26,6 +26,7 @@
                 <v-list-item-content>
                   <v-list-item-subtitle @click="startOnTime(bookmark.time)" class="grey--text">{{ bookmark.time | formatTime }}</v-list-item-subtitle>
                   <v-list-item-title @click="startOnTime(bookmark.time)">{{ bookmark.content }}</v-list-item-title>
+                  <p>{{ bookmark.playlist.title }}</p>
                 </v-list-item-content>
                 <v-btn outlined @click="deleteBookmark(bookmark.id)" v-if="user">削除</v-btn>
               </v-list-item>
