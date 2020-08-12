@@ -95,6 +95,11 @@ export default {
       .then(res => {
         this.video = res.data;
       })
+    axios
+      .get(`${process.env.VUE_APP_ENDPOINT}/v1/playlists`)
+      .then((res) => {
+        this.playlists = res.data;
+      })
   },
   methods: {
     getCurrentTime() {
