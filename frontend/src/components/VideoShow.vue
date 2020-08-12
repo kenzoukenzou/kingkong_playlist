@@ -44,6 +44,7 @@
           <v-select
             label="プレイリストを選択"
             :items="playlists"
+            v-model="bookmark.playlist_id"
           >
           </v-select>
 
