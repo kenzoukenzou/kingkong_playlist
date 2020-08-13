@@ -5,6 +5,7 @@ import VideoShow from '@/components/VideoShow'
 import VideoNew from '@/components/VideoNew'
 import PlaylistNew from '@/components/PlaylistNew'
 import Playlists from '@/components/Playlists'
+import PlaylistShow from '@/components/PlaylistShow'
 import About from '@/components/About'
 import Login from '@/components/Login'
 import firebase from '../plugins/firebase'
@@ -26,6 +27,11 @@ Vue.use(VueRouter)
     path: '/videos/:id(\\d+)',
     name: 'VideoShow',
     component: VideoShow
+  },
+  {
+    path: '/playlists/:id(\\d+)',
+    name: 'PlaylistShow',
+    component: PlaylistShow
   },
   {
     path: '/videos/new',

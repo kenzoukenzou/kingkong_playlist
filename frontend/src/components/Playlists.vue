@@ -10,27 +10,31 @@
         v-for="p in playlists"
         :key="p.id"
       >
-        <v-card
-          class="mx-auto"
-          max-width="344"
-        >
-          <v-img
-            :src="p.thumbnail"
-            height="200px"
-          ></v-img>
-          <v-card-title>
-            {{ p.title }}
-          </v-card-title>
-          <v-card-actions>
-            <v-btn
-              color="purple"
-              text
-            >
-              Explore
-            </v-btn>
-            <v-spacer></v-spacer>
-          </v-card-actions>
-        </v-card>
+        <router-link :to="{ name: 'PlaylistShow', params: { id: p.id }}">
+          <v-card
+            class="mx-auto"
+            max-width="344"
+          >
+            <v-img
+              :src="p.thumbnail"
+              height="200px"
+            ></v-img>
+            <v-card-title>
+              {{ p.title }}
+            </v-card-title>
+            <v-card-actions>
+              <router-link :to="{ name: 'PlaylistShow', params: { id: p.id }}">
+                <v-btn
+                  color="purple"
+                  text
+                >
+                  Explore
+                </v-btn>
+              </router-link>
+              <v-spacer></v-spacer>
+            </v-card-actions>
+          </v-card>
+        </router-link>
       </v-col>
     </v-row>
   </div>
