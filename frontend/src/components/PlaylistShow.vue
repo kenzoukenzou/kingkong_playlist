@@ -17,6 +17,7 @@
               <v-list-item
                 v-for="bookmark in playlist.bookmarks"
                 :key="bookmark.id"
+                @click="startVideo(bookmark.video.youtube_key, bookmark.time)"
               >
                 <v-list-item-content>
                   <v-list-item-subtitle class="purple--text">{{ bookmark.time | formatTime }}</v-list-item-subtitle>
@@ -50,6 +51,13 @@ export default {
         this.playlist = res.data;
         this.playVideoId = res.data.videos[0].youtube_key;
       })
+  },
+  methods: {
+    startVideo(videoId, time) {
+      this.playVideoId = videoId;
+      this.player.seekTo(time);
+      this.player.playVideo();
+    }
   },
   computed: {
     player() {
