@@ -7,7 +7,7 @@ class V1::PlaylistsController < ApplicationController
   end
 
   def show
-    render json: @playlist, include: [:videos, :bookmarks]
+    render json: @playlist, include: [:videos, bookmarks: { include: [:video] }]
   end
 
   def create
