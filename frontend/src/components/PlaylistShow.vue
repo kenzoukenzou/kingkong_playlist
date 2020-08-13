@@ -50,6 +50,11 @@ export default {
         this.playlist = res.data;
         this.playVideoId = res.data.videos[0].youtube_key;
       })
+  },
+  computed: {
+    player() {
+      return this.$refs.youtube.player
+    }
   }
 }
 </script>
