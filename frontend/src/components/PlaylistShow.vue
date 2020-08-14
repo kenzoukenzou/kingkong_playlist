@@ -14,6 +14,7 @@
           <v-list
             style="height: 350px"
           >
+            <v-subheader>{{ playlist.title }}</v-subheader>
             <v-list-item-group color="primary">
               <v-list-item
                 v-for="bookmark in playlist.bookmarks"
