@@ -29,14 +29,17 @@
 $ cd backend/
 $ rails db:create db:migrate
 $ bundle install
-$ rails s
 ```
 
 ```shell
 # Frontend
 $ cd frontend/
 $ yarn
-$ npm run serve
+```
+
+```shell
+# root
+$ foreman start -f Procfile.dev
 ```
 
 動画の保存処理を行う場合は、Youtube APIキーを `.env`で設定していただく必要があります。
