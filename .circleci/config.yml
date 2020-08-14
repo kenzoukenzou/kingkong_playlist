@@ -1,5 +1,44 @@
 version: 2
 jobs:
+  backend_build:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/ruby:2.6.5-node-browsers
+    steps:
+      - checkout
+      - run:
+        name: bundlerをinstall
+        command: |
+          gem update --system
+          gem install bundler
+        working_directory: backend
+      - run:
+        name: プロジェクトローカルにGemをインストールする設定
+        command: bundle config set --local path 'vendor/bundle'
+        working_directory: backend
+      - run:
+        command: bundle check || bundle install
+        working_directory: backend
+      - run:
+        name: Update Package list
+        command: sudo apt update
+        working_directory: backend
+      - run: 
+        name: yarn install
+        command: yarn install --cache-folder ~/.cache/yarn
+        working_directory: backend
+      - run:
+        name: Want for DB
+        command: dockerize -wait tcp://127.0.0.1:5432 -timeout 1m
+        working_directory: backend
+      - run:
+        name: DBセットアップ
+        command: bin/rails db:create db:migrate db:schema:load --trace
+        working_directory: backend
+      - run:
+        name: テスト
+        command: bundle exec rspec
+        working_directory: backend
   frontend_build:
     working_directory: ~/repo
     docker:
