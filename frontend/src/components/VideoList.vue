@@ -5,7 +5,7 @@
       <v-tab to="/playlists">プレイリスト一覧</v-tab>
     </v-tabs>
     <v-row>
-      <template v-if="videos">
+      <template v-if="videos.length > 0">
         <v-col class="col-lg-3 col-md-4" v-for="video in videos" :key="video.id">
           <v-card
               class="mx-auto"
