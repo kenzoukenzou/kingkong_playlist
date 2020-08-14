@@ -36,12 +36,12 @@
         </v-col>
       </template>
       <template v-else>
-        <v-col class="col-lg-3 col-md-4" v-for="n in 20" :key="n">
+        <v-col class="col-lg-3 col-md-4 col-12" v-for="n in 20" :key="n">
           <v-card
+            class="mx-auto"
           >
             <v-skeleton-loader
               class="mx-auto"
-              max-width="300"
               type="card"
             ></v-skeleton-loader>
           </v-card>
