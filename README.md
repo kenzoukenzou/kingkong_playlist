@@ -42,6 +42,6 @@ $ npm run serve
 動画の保存処理を行う場合は、Youtube APIキーを `.env`で設定していただく必要があります。
 
 ```
-.env
+backend/.env
 YOUTUBE_API_KEY=xxx
 ```
