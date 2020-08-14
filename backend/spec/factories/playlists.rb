@@ -11,7 +11,7 @@
 #
 
 FactoryBot.define do
-  factory :playlists do
+  factory :playlist do
     title { '梶原工業どんがらがっしゃん珍道中' }
     description { '梶原工業がロレックスを買う話' }
     thumbnail { 'https://i.ytimg.com/vi/HcFrYRFu2-w/mqdefault.jpg' }
