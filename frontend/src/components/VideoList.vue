@@ -37,11 +37,14 @@
       </template>
       <template v-else>
         <v-col class="col-lg-3 col-md-4" v-for="n in 20" :key="n">
-          <v-skeleton-loader
-            class="mx-auto"
-            max-width="300"
-            type="card"
-          ></v-skeleton-loader>
+          <v-card
+          >
+            <v-skeleton-loader
+              class="mx-auto"
+              max-width="300"
+              type="card"
+            ></v-skeleton-loader>
+          </v-card>
         </v-col>
       </template>
     </v-row>
