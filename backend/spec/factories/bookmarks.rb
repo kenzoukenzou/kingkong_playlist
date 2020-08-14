@@ -13,7 +13,7 @@
 
 FactoryBot.define do
   factory :bookmark do
-    content { 'MyString' }
+    content { '天才的な梶原のボケ' }
     time { 10.0 }
   end
 end
