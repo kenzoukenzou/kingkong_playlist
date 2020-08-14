@@ -24,4 +24,8 @@ export default {
 a {
   text-decoration: none;
 }
+iframe {
+  width: 100%;
+  max-width: 650px;
+}
 </style>

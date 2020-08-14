@@ -1,7 +1,7 @@
 <template>
   <div v-if="video.id">
     <v-row>
-      <v-col>
+      <v-col class="col-12 col-lg-6 col-md-6">
         <youtube
           :video-id="video.youtube_key"
           ref="youtube"
@@ -77,7 +77,8 @@ export default {
         playlist_id: '',
       },
       palyerVars: {
-        autoplay: 0
+        autoplay: 0,
+        playsinline : 1,
       },
       offsetTop: 0,
     }
