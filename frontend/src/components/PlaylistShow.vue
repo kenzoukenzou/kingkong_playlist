@@ -4,6 +4,7 @@
       <v-col>
         <youtube
           :video-id="playVideoId"
+          :player-vars="{ autoplay: 1 }"
           ref="youtube"
         >
         </youtube>
@@ -53,10 +54,16 @@ export default {
       })
   },
   methods: {
+    // IDが切り替わったとき読み込みに時間がかかるのでsetTimeoutで開始位置を移動させている
     startVideo(videoId, time) {
-      this.playVideoId = videoId;
-      this.player.seekTo(time);
-      this.player.playVideo();
+      if (this.playVideoId === videoId) {
+        this.player.seekTo(time)
+      } else {
+        this.playVideoId = videoId;
+        setTimeout(()=> {
+          this.player.seekTo(time);
+        }, 1000)
+      }
     }
   },
   computed: {
