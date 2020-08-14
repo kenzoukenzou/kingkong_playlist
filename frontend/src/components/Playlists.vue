@@ -13,25 +13,24 @@
         <router-link :to="{ name: 'PlaylistShow', params: { id: p.id }}">
           <v-card
             class="mx-auto"
-            max-width="344"
           >
             <v-img
-              :src="p.thumbnail"
+              class="white--text align-end"
               height="200px"
-            ></v-img>
-            <v-card-title>
-              {{ p.title }}
-            </v-card-title>
+              :src="p.thumbnail"
+            >
+            </v-img>
+            <v-card-subtitle class="pb-0">{{ p.created_at | formatDateTime }}</v-card-subtitle>
+            <v-card-text class="text--primary pb-0">
+              <div>{{ p.title | truncate(15) }}</div>
+            </v-card-text>
             <v-card-actions>
-              <router-link :to="{ name: 'PlaylistShow', params: { id: p.id }}">
-                <v-btn
-                  color="purple"
-                  text
-                >
-                  Explore
-                </v-btn>
-              </router-link>
-              <v-spacer></v-spacer>
+              <v-btn
+                color="pink"
+                text
+              >
+                Explore
+              </v-btn>
             </v-card-actions>
           </v-card>
         </router-link>
