@@ -15,7 +15,7 @@
 FactoryBot.define do
   factory :video do
     title { '【衝撃】ロレックスからの…' }
-    youtube_key { 'HcFrYRFu2-w' }
+    sequence(:youtube_key) { |n| "youtube-#{n}" }
     thumbnail { 'https://i.ytimg.com/vi/HcFrYRFu2-w/mqdefault.jpg' }
     published_at { Time.zone.now }
   end
