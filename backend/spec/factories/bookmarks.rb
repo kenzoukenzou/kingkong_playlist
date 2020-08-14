@@ -12,7 +12,7 @@
 #
 
 FactoryBot.define do
-  factory :bookmarks do
+  factory :bookmark do
     content { 'MyString' }
     time { 10.0 }
   end
