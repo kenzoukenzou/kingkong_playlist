@@ -11,7 +11,7 @@
         </youtube>
 
         <!-- Bookmarks -->
-        <v-card outlined id="scroll-target" style="max-height: 250px" class="overflow-y-auto" v-if="video.bookmarks.length > 0">
+        <v-card outlined id="scroll-target" style="max-height: 250px" class="overflow-y-auto" v-if="video.bookmarks">
           <v-list
             v-scroll:#scroll-target="onScroll"
             style="height: 350px"
@@ -54,7 +54,7 @@
         </v-form>
 
         <!-- Relate Playlists -->
-        <p class="font-weight-bold">関連プレイリスト</p>
+        <!-- <p class="font-weight-bold">関連プレイリスト</p>
         <v-row class="mt-0">
           <v-col
             class="col-12 col-lg-6 col-md-6 pt-0"
@@ -74,7 +74,7 @@
             </v-card>
             </router-link>
           </v-col>
-        </v-row>
+        </v-row> -->
       </v-col>
       
       <v-col>
@@ -128,6 +128,7 @@ export default {
       video: {},
       otherVideos: [],
       playlists: [],
+      bookmarks: [],
       bookmark: {
         content: '',
         time: 0,
@@ -189,7 +190,7 @@ export default {
       axios
         .get(`${process.env.VUE_APP_ENDPOINT}/v1/videos/${this.$route.params.id}`)
         .then(res => {
-          this.video.bookmarks = res.data.bookmarks;
+          this.video.bookmarks = res.data[0].video.bookmarks;
         })
     },
     deleteBookmark(id) {
