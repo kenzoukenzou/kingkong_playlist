@@ -54,7 +54,7 @@
         </v-form>
 
         <!-- Relate Playlists -->
-        <!-- <p class="font-weight-bold">関連プレイリスト</p>
+        <p class="font-weight-bold">関連プレイリスト</p>
         <v-row class="mt-0">
           <v-col
             class="col-12 col-lg-6 col-md-6 pt-0"
@@ -74,7 +74,7 @@
             </v-card>
             </router-link>
           </v-col>
-        </v-row> -->
+        </v-row>
       </v-col>
       
       <v-col>
