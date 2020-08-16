@@ -56,7 +56,6 @@
         </v-form>
         
         <!-- Other Video -->
-
         <v-row dense>
           <v-col
             v-for="v in otherVideos"
@@ -123,12 +122,7 @@ export default {
     }
   },
   mounted() {
-    axios
-      .get(`${process.env.VUE_APP_ENDPOINT}/v1/videos/${this.$route.params.id}`)
-      .then(res => {
-        this.video = res.data[0].video;
-        this.otherVideos = res.data[0].other_videos;
-      })
+    this.getVideo();
     // Vuetifyのselectフィールドに合わせるため整形
     axios
       .get(`${process.env.VUE_APP_ENDPOINT}/v1/playlists`)
@@ -181,6 +175,17 @@ export default {
     onScroll (e) {
       this.offsetTop = e.target.scrollTop
     },
+    getVideo() {
+      axios
+        .get(`${process.env.VUE_APP_ENDPOINT}/v1/videos/${this.$route.params.id}`)
+        .then(res => {
+          this.video = res.data[0].video;
+          this.otherVideos = res.data[0].other_videos;
+        })
+    }
   },
+  watch: {
+    $route: 'getVideo'
+  }
 }
 </script>
