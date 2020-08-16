@@ -2,7 +2,7 @@ class V1::VideosController < ApplicationController
   before_action :set_video, only: %i[show destroy]
 
   def index
-    videos = Video.order(:id)
+    videos = Video.order(published_at: :desc)
     render json: videos
   end
 
