@@ -1,11 +1,6 @@
 require 'net/http'
 
 class UploadVideosSecond
-
-  def self.generate_end_point(page_token)
-    "https://www.googleapis.com/youtube/v3/search?key=#{ENV['YOUTUBE_API_KEY']}&channelId=UCgm5JFYUWqVTQKH15D8eqFg&part=snippet,id&order=date&pageToken=#{page_token}&maxResults=40"
-  end
-
   def self.execute
     puts 'バッチ処理を開始します。'
     
@@ -13,7 +8,7 @@ class UploadVideosSecond
       page_tokens = ['CCgQAA'] # 最初のpageTokenを指定
 
       3.times do |n|
-        end_point = UploadVideosSecond.generate_end_point(page_tokens.last)
+        end_point = "https://www.googleapis.com/youtube/v3/search?key=#{ENV['YOUTUBE_API_KEY']}&channelId=UCgm5JFYUWqVTQKH15D8eqFg&part=snippet,id&order=date&pageToken=#{page_tokens.last}&maxResults=40"
         uri = URI(end_point)
         res = Net::HTTP.get_response(uri)
         results = JSON.parse(res.body)
