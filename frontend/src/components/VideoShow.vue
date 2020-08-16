@@ -14,7 +14,7 @@
       
       <v-col>
         <!-- Bookmarks -->
-        <v-card outlined id="scroll-target" style="max-height: 350px" class="overflow-y-auto">
+        <v-card outlined id="scroll-target" style="max-height: 350px" class="overflow-y-auto" v-if="video.bookmarks">
           <v-list
             v-scroll:#scroll-target="onScroll"
             style="height: 350px"
@@ -51,12 +51,12 @@
           </v-text-field>
           <div class="d-flex justify-space-between pa-0 ma-0">
             <p class="grey--text">{{ bookmark.time | formatTime }}</p>
-            <v-btn dark class="font-weight-bold" type="submit">追加</v-btn>
+            <v-btn dark class="font-weight-bold mt-0 pt-0" type="submit">追加</v-btn>
           </div>
         </v-form>
         
         <!-- Other Video -->
-        <v-row dense>
+        <v-row class="mt-3" dense>
           <v-col
             v-for="v in otherVideos"
             :key="v.id"
@@ -73,9 +73,14 @@
                   >
                     <v-img :src="v.thumbnail"></v-img>
                   </v-avatar>
-                  <v-card-subtitle class="text--primary font-weight-bold">
-                    {{ v.title | truncate(15) }}
-                  </v-card-subtitle>
+                  <div>
+                    <v-card-subtitle class="text--primary font-weight-bold pb-1">
+                      {{ v.title | truncate(15) }}
+                    </v-card-subtitle>
+                    <v-card-subtitle class="ma-0 pt-0">
+                      {{ v.published_at | formatDateTime }}
+                    </v-card-subtitle>
+                  </div>
                 </div>
               </v-card>
             </router-link>
