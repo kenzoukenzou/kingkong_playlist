@@ -1,6 +1,7 @@
 <template>
   <div v-if="video.id">
     <v-row>
+      <!-- Video -->
       <v-col class="col-12 col-lg-6 col-md-6">
         <youtube
           :video-id="video.youtube_key"
@@ -10,8 +11,8 @@
         </youtube>
         <p class="font-weight-bold">{{ video.title }}</p>
       </v-col>
+      
       <v-col>
-
         <!-- Bookmarks -->
         <v-card outlined id="scroll-target" style="max-height: 350px" class="overflow-y-auto">
           <v-list
@@ -33,7 +34,7 @@
             </v-list-item-group>
           </v-list>
         </v-card>
-        
+        <!-- Bookmark Form -->
         <v-form @submit.prevent="addBookmark" class="mt-3" v-if="user">
           <v-select
             label="プレイリストを選択"
@@ -53,6 +54,7 @@
             <v-btn dark class="font-weight-bold" type="submit">追加</v-btn>
           </div>
         </v-form>
+
       </v-col>
     </v-row>
   </div>
@@ -70,6 +72,7 @@ export default {
   data() {
     return {
       video: {},
+      otherVideos: [],
       playlists: [],
       bookmark: {
         content: '',
@@ -95,7 +98,8 @@ export default {
     axios
       .get(`${process.env.VUE_APP_ENDPOINT}/v1/videos/${this.$route.params.id}`)
       .then(res => {
-        this.video = res.data;
+        this.video = res.data[0].video;
+        this.otherVideos = res.data[0].other_videos;
       })
     // Vuetifyのselectフィールドに合わせるため整形
     axios
