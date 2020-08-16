@@ -8,7 +8,6 @@ class V1::VideosController < ApplicationController
 
   def show
     render json: [
-      # includeが1つの要素としてカウントされてしまっている
       video: @video.as_json(include: [bookmarks: { include: [:playlist] }]),
       other_videos: @video.other_videos
     ]
