@@ -2,7 +2,7 @@
   <div v-if="video.id">
     <v-row>
       <!-- Video -->
-      <v-col class="col-12 col-lg-6 col-md-6">
+      <v-col class="col-12 col-lg-7 col-md-7">
         <youtube
           :video-id="video.youtube_key"
           ref="youtube"
@@ -54,7 +54,35 @@
             <v-btn dark class="font-weight-bold" type="submit">追加</v-btn>
           </div>
         </v-form>
+        
+        <!-- Other Video -->
 
+        <v-row dense>
+          <v-col
+            v-for="v in otherVideos"
+            :key="v.id"
+            cols="12"
+          >
+            <router-link :to="{ name: 'VideoShow', params: { id: v.id } }">
+              <v-card
+                outlined
+              >
+                <div class="d-flex flex-no-wrap">
+                  <v-avatar
+                    size="125"
+                    tile
+                  >
+                    <v-img :src="v.thumbnail"></v-img>
+                  </v-avatar>
+                  <v-card-subtitle class="text--primary font-weight-bold">
+                    {{ v.title | truncate(15) }}
+                  </v-card-subtitle>
+                </div>
+              </v-card>
+            </router-link>
+          </v-col>
+        </v-row>
+        
       </v-col>
     </v-row>
   </div>
