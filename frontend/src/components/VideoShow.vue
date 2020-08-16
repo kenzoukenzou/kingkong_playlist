@@ -7,11 +7,12 @@
           :video-id="video.youtube_key"
           ref="youtube"
           :player-vars="palyerVars"
+          class="mt-4"
         >
         </youtube>
 
         <!-- Bookmarks -->
-        <v-card outlined id="scroll-target" style="max-height: 250px" class="overflow-y-auto" v-if="video.bookmarks">
+        <v-card outlined id="scroll-target" style="max-height: 250px" class="overflow-y-auto" v-if="video.bookmarks.length > 0">
           <v-list
             v-scroll:#scroll-target="onScroll"
             style="height: 350px"
