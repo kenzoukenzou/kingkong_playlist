@@ -9,7 +9,6 @@
           :player-vars="palyerVars"
         >
         </youtube>
-        <p class="font-weight-bold">{{ video.title }}</p>
 
         <!-- Bookmarks -->
         <v-card outlined id="scroll-target" style="max-height: 250px" class="overflow-y-auto" v-if="video.bookmarks.length > 0">
@@ -32,6 +31,7 @@
             </v-list-item-group>
           </v-list>
         </v-card>
+
         <!-- Bookmark Form -->
         <v-form @submit.prevent="addBookmark" class="mt-3" v-if="user">
           <v-select
@@ -52,6 +52,29 @@
             <v-btn dark class="font-weight-bold mt-0 pt-0" type="submit">追加</v-btn>
           </div>
         </v-form>
+
+        <!-- Relate Playlists -->
+        <p class="font-weight-bold">関連プレイリスト</p>
+        <v-row class="mt-0">
+          <v-col
+            class="col-12 col-lg-6 col-md-6 pt-0"
+            v-for="p in video.playlists"
+            :key="p.id"
+          >
+            <router-link :to="{ name: 'PlaylistShow', params: { id: p.id } }">
+            <v-card
+              class="mx-auto"
+            >
+              <v-img
+                :src="p.thumbnail"
+                class="white--text align-end"
+              >
+                <v-card-title class="font-weight-bold text-subtitle-2">{{ p.title }}</v-card-title>
+              </v-img>
+            </v-card>
+            </router-link>
+          </v-col>
+        </v-row>
       </v-col>
       
       <v-col>
