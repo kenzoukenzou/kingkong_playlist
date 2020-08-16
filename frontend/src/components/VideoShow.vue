@@ -55,27 +55,29 @@
         </v-form>
 
         <!-- Relate Playlists -->
-        <p class="font-weight-bold">関連プレイリスト</p>
-        <v-row class="mt-0">
-          <v-col
-            class="col-12 col-lg-6 col-md-6 pt-0"
-            v-for="p in video.playlists"
-            :key="p.id"
-          >
-            <router-link :to="{ name: 'PlaylistShow', params: { id: p.id } }">
-            <v-card
-              class="mx-auto"
+        <template v-if="video.playlists.length > 0">
+          <p class="font-weight-bold">関連プレイリスト</p>
+          <v-row class="mt-0">
+            <v-col
+              class="col-12 col-lg-6 col-md-6 pt-0"
+              v-for="p in video.playlists"
+              :key="p.id"
             >
-              <v-img
-                :src="p.thumbnail"
-                class="white--text align-end"
+              <router-link :to="{ name: 'PlaylistShow', params: { id: p.id } }">
+              <v-card
+                class="mx-auto"
               >
-                <v-card-title class="font-weight-bold text-subtitle-2">{{ p.title }}</v-card-title>
-              </v-img>
-            </v-card>
-            </router-link>
-          </v-col>
-        </v-row>
+                <v-img
+                  :src="p.thumbnail"
+                  class="white--text align-end"
+                >
+                  <v-card-title class="font-weight-bold text-subtitle-2">{{ p.title }}</v-card-title>
+                </v-img>
+              </v-card>
+              </router-link>
+            </v-col>
+          </v-row>
+        </template>
       </v-col>
       
       <v-col>
@@ -209,6 +211,7 @@ export default {
         .get(`${process.env.VUE_APP_ENDPOINT}/v1/videos/${this.$route.params.id}`)
         .then(res => {
           this.video = res.data[0].video;
+          this.video.bookmarks = res.data[0].bookmarks;
           this.otherVideos = res.data[0].other_videos;
         })
     }

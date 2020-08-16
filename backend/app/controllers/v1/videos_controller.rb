@@ -7,8 +7,10 @@ class V1::VideosController < ApplicationController
   end
 
   def show
+    @bookmarks = @video.bookmarks.order(:time)
     render json: [
-      video: @video.as_json(include: [:playlists ,bookmarks: { include: [:playlist] }]),
+      video: @video.as_json(include: [:playlists]),
+      bookmarks: @bookmarks.as_json(include: :playlist),
       other_videos: @video.other_videos,
     ]
   end
