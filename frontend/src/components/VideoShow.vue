@@ -10,11 +10,9 @@
         >
         </youtube>
         <p class="font-weight-bold">{{ video.title }}</p>
-      </v-col>
-      
-      <v-col>
+
         <!-- Bookmarks -->
-        <v-card outlined id="scroll-target" style="max-height: 350px" class="overflow-y-auto" v-if="video.bookmarks">
+        <v-card outlined id="scroll-target" style="max-height: 250px" class="overflow-y-auto" v-if="video.bookmarks.length > 0">
           <v-list
             v-scroll:#scroll-target="onScroll"
             style="height: 350px"
@@ -54,7 +52,9 @@
             <v-btn dark class="font-weight-bold mt-0 pt-0" type="submit">追加</v-btn>
           </div>
         </v-form>
-        
+      </v-col>
+      
+      <v-col>
         <!-- Other Video -->
         <v-row class="mt-3" dense>
           <v-col
@@ -86,7 +86,6 @@
             </router-link>
           </v-col>
         </v-row>
-        
       </v-col>
     </v-row>
   </div>
