@@ -17,7 +17,7 @@ class Video < ApplicationRecord
 
   validates :title, :youtube_key, presence: true
   validates :youtube_key, uniqueness: true
-  has_many :bookmarks, -> { order(:time) }, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
   has_many :playlists, -> { distinct }, through: :bookmarks
 
   require 'net/http'
