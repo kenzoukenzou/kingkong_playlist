@@ -26,6 +26,6 @@ a {
 }
 iframe {
   width: 100%;
-  max-width: 650px;
+  height: 400px;
 }
 </style>

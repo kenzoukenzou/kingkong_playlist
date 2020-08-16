@@ -13,6 +13,8 @@
 #
 
 class Video < ApplicationRecord
+  DISPLAY_VIDEO_NUM = 20
+
   validates :title, :youtube_key, presence: true
   validates :youtube_key, uniqueness: true
   has_many :bookmarks, -> { order(:time) }, dependent: :destroy
@@ -21,6 +23,10 @@ class Video < ApplicationRecord
   require 'net/http'
   YOUTUBE_ENDPOINT = 'https://www.googleapis.com/youtube/v3/videos'
   YOUTUBE_PARAMS = { part: 'snippet', type: 'video', key: ENV['YOUTUBE_API_KEY'] }
+  
+  def other_videos
+    Video.where.not(id: id).first(DISPLAY_VIDEO_NUM)
+  end
 
   def save_with_youtube_data(params)
     ActiveRecord::Base.transaction do

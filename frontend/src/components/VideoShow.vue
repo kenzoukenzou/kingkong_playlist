@@ -1,7 +1,8 @@
 <template>
   <div v-if="video.id">
     <v-row>
-      <v-col class="col-12 col-lg-6 col-md-6">
+      <!-- Video -->
+      <v-col class="col-12 col-lg-7 col-md-7">
         <youtube
           :video-id="video.youtube_key"
           ref="youtube"
@@ -10,10 +11,10 @@
         </youtube>
         <p class="font-weight-bold">{{ video.title }}</p>
       </v-col>
+      
       <v-col>
-
         <!-- Bookmarks -->
-        <v-card outlined id="scroll-target" style="max-height: 350px" class="overflow-y-auto">
+        <v-card outlined id="scroll-target" style="max-height: 350px" class="overflow-y-auto" v-if="video.bookmarks">
           <v-list
             v-scroll:#scroll-target="onScroll"
             style="height: 350px"
@@ -33,7 +34,7 @@
             </v-list-item-group>
           </v-list>
         </v-card>
-        
+        <!-- Bookmark Form -->
         <v-form @submit.prevent="addBookmark" class="mt-3" v-if="user">
           <v-select
             label="プレイリストを選択"
@@ -50,9 +51,42 @@
           </v-text-field>
           <div class="d-flex justify-space-between pa-0 ma-0">
             <p class="grey--text">{{ bookmark.time | formatTime }}</p>
-            <v-btn dark class="font-weight-bold" type="submit">追加</v-btn>
+            <v-btn dark class="font-weight-bold mt-0 pt-0" type="submit">追加</v-btn>
           </div>
         </v-form>
+        
+        <!-- Other Video -->
+        <v-row class="mt-3" dense>
+          <v-col
+            v-for="v in otherVideos"
+            :key="v.id"
+            cols="12"
+          >
+            <router-link :to="{ name: 'VideoShow', params: { id: v.id } }">
+              <v-card
+                outlined
+              >
+                <div class="d-flex flex-no-wrap">
+                  <v-avatar
+                    size="125"
+                    tile
+                  >
+                    <v-img :src="v.thumbnail"></v-img>
+                  </v-avatar>
+                  <div>
+                    <v-card-subtitle class="text--primary font-weight-bold pb-1">
+                      {{ v.title | truncate(15) }}
+                    </v-card-subtitle>
+                    <v-card-subtitle class="ma-0 pt-0">
+                      {{ v.published_at | formatDateTime }}
+                    </v-card-subtitle>
+                  </div>
+                </div>
+              </v-card>
+            </router-link>
+          </v-col>
+        </v-row>
+        
       </v-col>
     </v-row>
   </div>
@@ -70,6 +104,7 @@ export default {
   data() {
     return {
       video: {},
+      otherVideos: [],
       playlists: [],
       bookmark: {
         content: '',
@@ -92,11 +127,7 @@ export default {
     }
   },
   mounted() {
-    axios
-      .get(`${process.env.VUE_APP_ENDPOINT}/v1/videos/${this.$route.params.id}`)
-      .then(res => {
-        this.video = res.data;
-      })
+    this.getVideo();
     // Vuetifyのselectフィールドに合わせるため整形
     axios
       .get(`${process.env.VUE_APP_ENDPOINT}/v1/playlists`)
@@ -149,6 +180,17 @@ export default {
     onScroll (e) {
       this.offsetTop = e.target.scrollTop
     },
+    getVideo() {
+      axios
+        .get(`${process.env.VUE_APP_ENDPOINT}/v1/videos/${this.$route.params.id}`)
+        .then(res => {
+          this.video = res.data[0].video;
+          this.otherVideos = res.data[0].other_videos;
+        })
+    }
   },
+  watch: {
+    $route: 'getVideo'
+  }
 }
 </script>
