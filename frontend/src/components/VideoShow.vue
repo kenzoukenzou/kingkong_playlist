@@ -12,7 +12,7 @@
         </youtube>
 
         <!-- Bookmarks -->
-        <v-card outlined id="scroll-target" style="max-height: 250px" class="overflow-y-auto" v-if="video.bookmarks.length > 0">
+        <v-card outlined id="scroll-target" style="max-height: 250px" class="overflow-y-auto" v-if="video.bookmarks && video.bookmarks.length > 0">
           <v-list
             v-scroll:#scroll-target="onScroll"
             style="height: 350px"
@@ -55,7 +55,7 @@
         </v-form>
 
         <!-- Relate Playlists -->
-        <template v-if="video.playlists.length > 0">
+        <template v-if="video.playlists && video.playlists.length > 0">
           <p class="font-weight-bold">関連プレイリスト</p>
           <v-row class="mt-0">
             <v-col
