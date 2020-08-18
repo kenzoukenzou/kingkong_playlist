@@ -54,13 +54,13 @@
           </div>
         </v-form>
 
-        <!-- Relate Playlists -->
-        <template v-if="video.playlists && video.playlists.length > 0">
+        <!-- Related Playlists -->
+        <template v-if="relatedPlaylists && relatedPlaylists.length > 0">
           <p class="font-weight-bold">関連プレイリスト</p>
           <v-row class="mt-0">
             <v-col
               class="col-12 col-lg-6 col-md-6 pt-0"
-              v-for="p in video.playlists"
+              v-for="p in relatedPlaylists"
               :key="p.id"
             >
               <router-link :to="{ name: 'PlaylistShow', params: { id: p.id } }">
@@ -132,6 +132,7 @@ export default {
       otherVideos: [],
       playlists: [],
       bookmarks: [],
+      relatedPlaylists: [],
       bookmark: {
         content: '',
         time: 0,
@@ -211,6 +212,7 @@ export default {
         .then(res => {
           this.video = res.data[0].video;
           this.bookmarks = res.data[0].bookmarks;
+          this.relatedPlaylists = res.data[0].video.playlists;
           this.otherVideos = res.data[0].other_videos;
         })
     }
