@@ -182,6 +182,7 @@ export default {
           this.bookmark.content = '';
           this.player.playVideo();
           this.updateBookmarks();
+          this.updatePlaylists();
         })
     },
     startOnTime(time) {
@@ -196,11 +197,19 @@ export default {
           this.bookmarks = res.data[0].bookmarks;
         })
     },
+    updatePlaylists() {
+      axios
+        .get(`${process.env.VUE_APP_ENDPOINT}/v1/videos/${this.$route.params.id}`)
+        .then(res => {
+          this.relatedPlaylists = res.data[0].video.playlists;
+        })
+    },
     deleteBookmark(id) {
       axios
         .delete(`${process.env.VUE_APP_ENDPOINT}/v1/bookmarks/${id}`)
         .then(() => {
           this.updateBookmarks();
+          this.updatePlaylists();
         })
     },
     onScroll (e) {
