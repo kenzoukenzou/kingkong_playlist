@@ -12,14 +12,14 @@
         </youtube>
 
         <!-- Bookmarks -->
-        <v-card outlined id="scroll-target" style="max-height: 250px" class="overflow-y-auto" v-if="video.bookmarks && video.bookmarks.length > 0">
+        <v-card outlined id="scroll-target" style="max-height: 250px" class="overflow-y-auto" v-if="bookmarks && bookmarks.length > 0">
           <v-list
             v-scroll:#scroll-target="onScroll"
             style="height: 350px"
           >
             <v-list-item-group color="primary">
               <v-list-item
-                v-for="bookmark in video.bookmarks"
+                v-for="bookmark in bookmarks"
                 :key="bookmark.id"
               >
                 <v-list-item-content>
@@ -177,11 +177,10 @@ export default {
       axios
         .post(`${process.env.VUE_APP_ENDPOINT}/v1/bookmarks`, {...this.bookmark, ...{ video_id: this.video.id }})
         .then(() => {
-          this.updateBookmarks();
-
           this.bookmark.time = 0;
           this.bookmark.content = '';
           this.player.playVideo();
+          this.updateBookmarks();
         })
     },
     startOnTime(time) {
@@ -193,7 +192,7 @@ export default {
       axios
         .get(`${process.env.VUE_APP_ENDPOINT}/v1/videos/${this.$route.params.id}`)
         .then(res => {
-          this.video.bookmarks = res.data[0].video.bookmarks;
+          this.bookmarks = res.data[0].bookmarks;
         })
     },
     deleteBookmark(id) {
@@ -211,7 +210,7 @@ export default {
         .get(`${process.env.VUE_APP_ENDPOINT}/v1/videos/${this.$route.params.id}`)
         .then(res => {
           this.video = res.data[0].video;
-          this.video.bookmarks = res.data[0].bookmarks;
+          this.bookmarks = res.data[0].bookmarks;
           this.otherVideos = res.data[0].other_videos;
         })
     }
