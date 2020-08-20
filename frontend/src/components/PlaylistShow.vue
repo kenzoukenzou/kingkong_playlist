@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row v-if="playlist.videos">
-      <v-col>
+      <v-col class="col-12 col-lg-7 col-md-7">
         <youtube
           :video-id="playVideoId"
           :player-vars="{ autoplay: 1, playsinline : 1 }"
