@@ -159,7 +159,7 @@ export default {
     axios
       .get(`${process.env.VUE_APP_ENDPOINT}/v1/playlists`)
       .then((res) => {
-        res.data.map((item) => {
+        res.data[0].all_playlists.map((item) => {
           this.playlists.push(
             { text: item.title, value: item.id }
           )
