@@ -4,7 +4,7 @@
       <v-col>
         <youtube
           :video-id="playVideoId"
-          :player-vars="{ autoplay: 1 }"
+          :player-vars="{ autoplay: 1, playsinline : 1 }"
           ref="youtube"
         >
         </youtube>
