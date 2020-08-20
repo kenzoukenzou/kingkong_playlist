@@ -56,7 +56,7 @@
 
         <!-- Related Playlists -->
         <template v-if="relatedPlaylists && relatedPlaylists.length > 0">
-          <p class="font-weight-bold">関連プレイリスト</p>
+          <p class="font-weight-bold mt-5">関連プレイリスト</p>
           <v-row class="mt-0">
             <v-col
               class="col-12 col-lg-6 col-md-6 pt-0"
