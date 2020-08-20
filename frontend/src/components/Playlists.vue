@@ -53,7 +53,7 @@ export default {
     axios
     .get(`${process.env.VUE_APP_ENDPOINT}/v1/playlists`)
       .then((res) => {
-        this.playlists = res.data         
+        this.playlists = res.data[0].have_bookmarks_playlists
       })
   }
 }
