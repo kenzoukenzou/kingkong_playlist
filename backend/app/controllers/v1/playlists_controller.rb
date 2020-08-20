@@ -4,7 +4,7 @@ class V1::PlaylistsController < ApplicationController
   def index
     render json: [
       all_playlists: Playlist.order(:id),
-      have_bookmarks_playlists: Playlist.joins(:bookmarks).order(:id)
+      have_bookmarks_playlists: Playlist.joins(:bookmarks).order(:id).distinct
     ]
   end
 
