@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h3 class="font-weight-bold">キングコングを応援する</h3>
+  <div class="mt-4">
+    <p class="font-weight-bold">キングコングを応援する</p>
     <v-banner outlined class="mt-3">
       <v-avatar
         slot="icon"
