@@ -57,27 +57,9 @@
         <!-- Related Playlists -->
         <template v-if="relatedPlaylists && relatedPlaylists.length > 0">
           <p class="font-weight-bold mt-5">関連プレイリスト</p>
-          <v-row class="mt-0">
-            <v-col
-              class="col-12 col-lg-6 col-md-6 pt-0"
-              v-for="p in relatedPlaylists"
-              :key="p.id"
-            >
-              <router-link :to="{ name: 'PlaylistShow', params: { id: p.id } }">
-              <v-card
-                class="mx-auto"
-              >
-                <v-img
-                  :src="p.thumbnail"
-                  class="white--text align-end"
-                >
-                  <v-card-title class="font-weight-bold text-subtitle-2">{{ p.title }}</v-card-title>
-                </v-img>
-              </v-card>
-              </router-link>
-            </v-col>
-          </v-row>
+          <PlaylistCards :playlists="relatedPlaylists" />
         </template>
+
         <div class="mt-5">
           <Banner />
         </div>
@@ -99,12 +81,14 @@
 import axios from 'axios'
 import Banner from './Banner'
 import VideoCards from './VideoCards'
+import PlaylistCards from './PlaylistCards'
 
 export default {
   name: 'VideoShow',
   components: {
     Banner,
     VideoCards,
+    PlaylistCards,
   },
   data() {
     return {
