@@ -12,27 +12,10 @@
         </youtube>
 
         <!-- Bookmarks -->
-        <v-card outlined id="scroll-target" style="max-height: 250px" class="overflow-y-auto" v-if="bookmarks && bookmarks.length > 0">
-          <v-list
-            v-scroll:#scroll-target="onScroll"
-            style="height: 350px"
-          >
-            <v-list-item-group color="primary">
-              <v-list-item
-                v-for="bookmark in bookmarks"
-                :key="bookmark.id"
-              >
-                <v-list-item-content>
-                  <v-list-item-subtitle @click="startOnTime(bookmark.time)" class="purple--text">{{ bookmark.time | formatTime }}</v-list-item-subtitle>
-                  <v-list-item-title @click="startOnTime(bookmark.time)">{{ bookmark.content }}</v-list-item-title>
-                  <v-list-item-subtitle>{{ bookmark.playlist.title }}</v-list-item-subtitle>
-                </v-list-item-content>
-                <v-btn outlined @click="deleteBookmark(bookmark.id)" v-if="user">削除</v-btn>
-              </v-list-item>
-            </v-list-item-group>
-          </v-list>
-        </v-card>
-
+        <template v-if="bookmarks && bookmarks.length > 0">
+          <Bookmarks :bookmarks="bookmarks" @delete-bookmark="deleteBookmark" />
+        </template>
+        
         <!-- Bookmark Form -->
         <v-form @submit.prevent="addBookmark" class="mt-3" v-if="user">
           <v-select
@@ -83,6 +66,7 @@ import axios from 'axios'
 import Banner from './Banner'
 import VideoCards from './VideoCards'
 import PlaylistCards from './PlaylistCards'
+import Bookmarks from './Bookmarks'
 
 export default {
   name: 'VideoShow',
@@ -90,6 +74,7 @@ export default {
     Banner,
     VideoCards,
     PlaylistCards,
+    Bookmarks,
   },
   data() {
     return {
@@ -107,7 +92,6 @@ export default {
         autoplay: 0,
         playsinline : 1,
       },
-      offsetTop: 0,
     }
   },
   computed: {
@@ -150,10 +134,13 @@ export default {
           this.updatePlaylists();
         })
     },
-    startOnTime(time) {
-      this.player.pauseVideo();
-      this.player.seekTo(time);
-      this.player.playVideo();
+    deleteBookmark(id) {
+      axios
+        .delete(`${process.env.VUE_APP_ENDPOINT}/v1/bookmarks/${id}`)
+        .then(() => {
+          this.updateBookmarks();
+          this.updatePlaylists();
+        })
     },
     updateBookmarks() {
       axios
@@ -168,17 +155,6 @@ export default {
         .then(res => {
           this.relatedPlaylists = res.data[0].video.playlists;
         })
-    },
-    deleteBookmark(id) {
-      axios
-        .delete(`${process.env.VUE_APP_ENDPOINT}/v1/bookmarks/${id}`)
-        .then(() => {
-          this.updateBookmarks();
-          this.updatePlaylists();
-        })
-    },
-    onScroll (e) {
-      this.offsetTop = e.target.scrollTop
     },
     getVideo() {
       axios
