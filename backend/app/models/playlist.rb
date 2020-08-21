@@ -14,7 +14,7 @@ class Playlist < ApplicationRecord
   DISPLAY_NUM = 10
   validates :title, presence: true
   has_many :bookmarks
-  has_many :videos, through: :bookmarks
+  has_many :videos, -> { distinct }, through: :bookmarks
 
   scope :have_bookmarks, -> { joins(:bookmarks).distinct }
 
