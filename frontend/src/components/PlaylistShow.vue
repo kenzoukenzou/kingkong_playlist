@@ -8,9 +8,8 @@
           ref="youtube"
         >
         </youtube>
-        <Banner />
       </v-col>
-      <v-col>
+      <v-col class="col-12 col-lg-5 col-md-5">
         <v-card outlined id="scroll-target" style="max-height: 350px" class="overflow-y-auto">
           <v-list
             style="height: 350px"
@@ -32,8 +31,12 @@
           </v-list>
         </v-card>
       </v-col>
-      
-    </v-row>    
+    </v-row>
+    <v-row>
+      <v-col class="col-12 col-lg-7 col-md-7">
+        <Banner />
+      </v-col>
+    </v-row>
   </div>
 </template>
 
