@@ -1,8 +1,8 @@
 <template>
   <div v-if="video.id">
     <v-row>
-      <!-- Video -->
       <v-col class="col-12 col-lg-7 col-md-7">
+        <!-- Video -->
         <youtube
           :video-id="video.youtube_key"
           ref="youtube"
@@ -44,6 +44,7 @@
           <PlaylistCards :playlists="relatedPlaylists" :colSize="'col-6 col-lg-4 col-md-4'" />
         </template>
 
+        <!-- Banner -->
         <div class="mt-5">
           <Banner />
         </div>
