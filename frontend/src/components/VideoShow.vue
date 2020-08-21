@@ -78,6 +78,9 @@
             </v-col>
           </v-row>
         </template>
+        <div class="mt-5">
+          <Banner />
+        </div>
       </v-col>
       
       <v-col>
@@ -123,9 +126,13 @@
 
 <script>
 import axios from 'axios'
+import Banner from './Banner'
 
 export default {
   name: 'VideoShow',
+  components: {
+    Banner,
+  },
   data() {
     return {
       video: {},

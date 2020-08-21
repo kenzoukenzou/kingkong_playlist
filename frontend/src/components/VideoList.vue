@@ -6,7 +6,7 @@
     </v-tabs>
     <v-row>
       <template v-if="videos.length > 0">
-        <v-col class="col-lg-3 col-md-4" v-for="video in videos" :key="video.id">
+        <v-col class="col-12 col-lg-3 col-md-4" v-for="video in videos" :key="video.id">
           <v-card
               class="mx-auto"
             >

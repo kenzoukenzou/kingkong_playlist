@@ -8,6 +8,7 @@
           ref="youtube"
         >
         </youtube>
+        <Banner />
       </v-col>
       <v-col>
         <v-card outlined id="scroll-target" style="max-height: 350px" class="overflow-y-auto">
@@ -30,16 +31,21 @@
             </v-list-item-group>
           </v-list>
         </v-card>
-
       </v-col>
+      
     </v-row>    
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Banner from './Banner'
+
 export default {
   name: 'PlaylistShow',
+  components: {
+    Banner
+  },
   data() {
     return {
       playlist: {},
