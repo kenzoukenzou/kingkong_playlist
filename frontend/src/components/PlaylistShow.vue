@@ -61,8 +61,8 @@ export default {
     axios
       .get(`${process.env.VUE_APP_ENDPOINT}/v1/playlists/${this.$route.params.id}`)
       .then(res => {
-        this.playlist = res.data;
-        this.playVideoId = res.data.videos[0].youtube_key;
+        this.playlist = res.data[0].playlist;
+        this.playVideoId = res.data[0].playlist.videos[0].youtube_key;
       })
   },
   methods: {
