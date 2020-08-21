@@ -11,6 +11,8 @@
         <!-- スマホ表示の際順番が狂うので非表示 -->
         <div class="d-none d-lg-block">
           <Banner />
+          <p class="font-weight-bold mt-5">他のプレイリスト</p>
+          <PlaylistCards :playlists="otherPlaylists" />
         </div>
       </v-col>
       <v-col class="col-12 col-lg-5 col-md-5">
@@ -18,7 +20,7 @@
           <v-list
             style="height: 350px"
           >
-            <v-subheader>{{ playlist.title }}</v-subheader>
+            <v-subheader class="font-weight-bold">{{ playlist.title }}</v-subheader>
             <v-list-item-group color="primary">
               <v-list-item
                 v-for="bookmark in playlist.bookmarks"
@@ -34,6 +36,7 @@
             </v-list-item-group>
           </v-list>
         </v-card>
+        <p class="font-weight-bold my-3">このプレイリストの動画</p>
         <VideoCards :videos="playlist.videos" />
       </v-col>
     </v-row>
@@ -44,17 +47,20 @@
 import axios from 'axios'
 import Banner from './Banner'
 import VideoCards from './VideoCards'
+import PlaylistCards from './PlaylistCards'
 
 export default {
   name: 'PlaylistShow',
   components: {
     Banner,
-    VideoCards
+    VideoCards,
+    PlaylistCards
   },
   data() {
     return {
       playlist: {},
       playVideoId: '',
+      otherPlaylists: []
     }
   },
   mounted() {
@@ -63,6 +69,7 @@ export default {
       .then(res => {
         this.playlist = res.data[0].playlist;
         this.playVideoId = res.data[0].playlist.videos[0].youtube_key;
+        this.otherPlaylists = res.data[0].other_playlists;
       })
   },
   methods: {

@@ -16,8 +16,10 @@ class Playlist < ApplicationRecord
   has_many :bookmarks
   has_many :videos, through: :bookmarks
 
+  scope :have_bookmarks, -> { joins(:bookmarks).distinct }
+
   def others
-    Video.where.not(id: id).first(DISPLAY_NUM)
+    Playlist.have_bookmarks.where.not(id: id).first(DISPLAY_NUM)
   end
 
   def set_first_video_thumbnail

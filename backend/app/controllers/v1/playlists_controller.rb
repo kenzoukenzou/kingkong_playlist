@@ -4,13 +4,14 @@ class V1::PlaylistsController < ApplicationController
   def index
     render json: [
       all_playlists: Playlist.order(:id),
-      have_bookmarks_playlists: Playlist.joins(:bookmarks).order(:id).distinct
+      have_bookmarks_playlists: Playlist.have_bookmarks.order(:id)
     ]
   end
 
   def show
     render json: [
       playlist: @playlist.as_json(include: [:videos, bookmarks: { include: [:video] }]),
+      other_playlists: @playlist.others
     ]
   end
 

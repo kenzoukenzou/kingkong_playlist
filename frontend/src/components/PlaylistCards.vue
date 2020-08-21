@@ -1,5 +1,5 @@
 <template>
-  <v-row class="mt-0">
+  <v-row class="mt-3">
     <v-col
       class="col-12 col-lg-6 col-md-6 pt-0"
       v-for="p in playlists"
