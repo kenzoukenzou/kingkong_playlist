@@ -64,13 +64,7 @@ export default {
     }
   },
   mounted() {
-    axios
-      .get(`${process.env.VUE_APP_ENDPOINT}/v1/playlists/${this.$route.params.id}`)
-      .then(res => {
-        this.playlist = res.data[0].playlist;
-        this.playVideoId = res.data[0].playlist.videos[0].youtube_key;
-        this.otherPlaylists = res.data[0].other_playlists;
-      })
+    this.getPlaylist()
   },
   methods: {
     // IDが切り替わったとき読み込みに時間がかかるのでsetTimeoutで開始位置を移動させている
@@ -83,12 +77,24 @@ export default {
           this.player.seekTo(time);
         }, 1000)
       }
+    },
+    getPlaylist() {
+      axios
+        .get(`${process.env.VUE_APP_ENDPOINT}/v1/playlists/${this.$route.params.id}`)
+        .then(res => {
+          this.playlist = res.data[0].playlist;
+          this.playVideoId = res.data[0].playlist.videos[0].youtube_key;
+          this.otherPlaylists = res.data[0].other_playlists;
+        })
     }
   },
   computed: {
     player() {
       return this.$refs.youtube.player
     }
+  },
+  watch: {
+    $route: 'getPlaylist'
   }
 }
 </script>
