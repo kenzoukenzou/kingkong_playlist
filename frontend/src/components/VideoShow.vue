@@ -39,6 +39,7 @@
             label="プレイリストを選択"
             :items="playlists"
             v-model="bookmark.playlist_id"
+            @change="getCurrentTime"
           >
           </v-select>
           <v-text-field
