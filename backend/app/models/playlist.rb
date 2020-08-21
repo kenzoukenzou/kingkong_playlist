@@ -11,9 +11,16 @@
 #
 
 class Playlist < ApplicationRecord
+  DISPLAY_NUM = 10
   validates :title, presence: true
   has_many :bookmarks
-  has_many :videos, through: :bookmarks
+  has_many :videos, -> { distinct }, through: :bookmarks
+
+  scope :have_bookmarks, -> { joins(:bookmarks).distinct }
+
+  def others
+    Playlist.have_bookmarks.where.not(id: id).first(DISPLAY_NUM)
+  end
 
   def set_first_video_thumbnail
     update(thumbnail: videos.first.thumbnail)
