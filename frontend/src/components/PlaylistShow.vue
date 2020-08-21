@@ -12,7 +12,7 @@
         <div class="d-none d-lg-block">
           <Banner />
           <p class="font-weight-bold mt-5">他のプレイリスト</p>
-          <PlaylistCards :playlists="otherPlaylists" />
+          <PlaylistCards :playlists="otherPlaylists" :colSize="'col-6 col-lg-4 col-md-4'" />
         </div>
       </v-col>
       <v-col class="col-12 col-lg-5 col-md-5">

@@ -4,7 +4,7 @@
       <v-tab to="/">動画一覧</v-tab>
       <v-tab to="/playlists">プレイリスト一覧</v-tab>
     </v-tabs>
-    <PlaylistCards :playlists="playlists" />
+    <PlaylistCards :playlists="playlists" :colSize="'col-6 col-lg-4 col-md-4'" />
   </div>
 </template>
 

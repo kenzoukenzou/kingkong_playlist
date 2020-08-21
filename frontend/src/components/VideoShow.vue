@@ -58,7 +58,7 @@
         <!-- Related Playlists -->
         <template v-if="relatedPlaylists && relatedPlaylists.length > 0">
           <p class="font-weight-bold mt-5">関連プレイリスト</p>
-          <PlaylistCards :playlists="relatedPlaylists" />
+          <PlaylistCards :playlists="relatedPlaylists" :colSize="'col-6 col-lg-4 col-md-4'" />
         </template>
 
         <div class="mt-5">

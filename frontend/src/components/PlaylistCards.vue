@@ -1,7 +1,7 @@
 <template>
   <v-row class="mt-3">
     <v-col
-      class="col-12 col-lg-6 col-md-6 pt-0"
+      :class="colSize"
       v-for="p in playlists"
       :key="p.id"
     >
@@ -24,6 +24,6 @@
 
 <script>
 export default {
-  props: ['playlists']
+  props: ['playlists', 'colSize']
 }
 </script>
