@@ -4,10 +4,14 @@
       <v-col class="col-12 col-lg-7 col-md-7">
         <youtube
           :video-id="playVideoId"
-          :player-vars="{ autoplay: 1, playsinline : 1 }"
+          :player-vars="{ playsinline : 1 }"
           ref="youtube"
         >
         </youtube>
+        <!-- スマホ表示の際順番が狂うので非表示 -->
+        <div class="d-none d-lg-block">
+          <Banner />
+        </div>
       </v-col>
       <v-col class="col-12 col-lg-5 col-md-5">
         <v-card outlined id="scroll-target" style="max-height: 350px" class="overflow-y-auto">
@@ -30,11 +34,7 @@
             </v-list-item-group>
           </v-list>
         </v-card>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col class="col-12 col-lg-7 col-md-7">
-        <Banner />
+        <VideoCards :videos="playlist.videos" />
       </v-col>
     </v-row>
   </div>
@@ -43,11 +43,13 @@
 <script>
 import axios from 'axios'
 import Banner from './Banner'
+import VideoCards from './VideoCards'
 
 export default {
   name: 'PlaylistShow',
   components: {
-    Banner
+    Banner,
+    VideoCards
   },
   data() {
     return {
