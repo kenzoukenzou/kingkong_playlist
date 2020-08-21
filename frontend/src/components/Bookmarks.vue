@@ -1,3 +1,4 @@
+<!--Playlist詳細ページでは出力内容が異なるので共通化しない -->
 <template>
   <v-card outlined id="scroll-target" style="max-height: 250px" class="overflow-y-auto">
     <v-list
