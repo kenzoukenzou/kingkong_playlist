@@ -1,66 +1,34 @@
 version: 2
 jobs:
-  backend_build:
-    working_directory: ~/repo
+  build:
+    working_directory: ~/kingkong_playlist/backend
     docker:
-      - image: circleci/ruby:2.6.5-node-browsers
+      - image: circleci/ruby:2.6.3
     steps:
-      - checkout
+      - checkout:
+          path: ~/kingkong_playlist
       - run:
-        name: bundlerをinstall
-        command: |
-          gem update --system
-          gem install bundler
-        working_directory: backend
+          command: |
+            gem update --system
+            gem install bundler
       - run:
-        name: プロジェクトローカルにGemをインストールする設定
-        command: bundle config set --local path 'vendor/bundle'
-        working_directory: backend
+          name: プロジェクトローカルにGemをインストールする設定
+          command: bundle config set --local path 'vendor/bundle'
       - run:
-        command: bundle check || bundle install
-        working_directory: backend
-      - run:
-        name: Update Package list
-        command: sudo apt update
-        working_directory: backend
-      - run: 
-        name: yarn install
-        command: yarn install --cache-folder ~/.cache/yarn
-        working_directory: backend
-      - run:
-        name: Want for DB
-        command: dockerize -wait tcp://127.0.0.1:5432 -timeout 1m
-        working_directory: backend
-      - run:
-        name: DBセットアップ
-        command: bin/rails db:create db:migrate db:schema:load --trace
-        working_directory: backend
-      - run:
-        name: テスト
-        command: bundle exec rspec
-        working_directory: backend
-  frontend_build:
-    working_directory: ~/repo
-    docker:
-      - image: node:10.16.3
-    steps:
-      - checkout
-      - run:
-          name: Install dependency
-          command: yarn
-          working_directory: frontend
+          command: bundle check || bundle install
       - save_cache:
-          key: v1-npm-deps-{{ checksum "package-lock.json" }}
+          key: kingkong_playlist-{{ checksum "Gemfile.lock" }}
           paths:
-            - ./node_modules
-          working_directory: frontend
+            - vendor/bundle
       - run:
-          name: Install firebase-tools
-          command: npm install --dev firebase-tools
-          working_directory: frontend
+          command: bin/rails db:create db:migrate db:schema:load --trace
       - run:
-          name: Build
-          command: npm run build
-          working_directory: frontend
-
-
+          command: bundle exec rspec
+      - store_test_results:
+          path: /tmp/test-results      
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      
