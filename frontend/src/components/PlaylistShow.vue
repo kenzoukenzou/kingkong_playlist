@@ -4,7 +4,7 @@
       <v-col class="col-12 col-lg-7 col-md-7">
         <youtube
           :video-id="playVideoId"
-          :player-vars="{ playsinline : 1 }"
+          :player-vars="palyerVars"
           ref="youtube"
         >
         </youtube>
@@ -60,7 +60,11 @@ export default {
     return {
       playlist: {},
       playVideoId: '',
-      otherPlaylists: []
+      otherPlaylists: [],
+      palyerVars: {
+        autoplay: 1,
+        playsinline : 1,
+      },
     }
   },
   mounted() {
