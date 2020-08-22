@@ -27,6 +27,7 @@ jobs:
       - store_test_results:
           path: /tmp/test-results
   deploy:
+    working_directory: ~/kingkong_playlist/backend
     docker:
       - image: buildpack-deps:trusty
     steps:
