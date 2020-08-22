@@ -1,14 +1,14 @@
 <template>
   <div>
     <v-autocomplete
-      v-model="query.title_cont"
+      v-model="query"
       :items="searchItems"
-      cache-items
-      class="mx-4"
-      hide-details
-      prepend-icon="mdi-database-search"
+      item-text="Description"
+      item-value="API"
       label="毎週キングコングの動画を検索"
-      append-icon
+      prepend-icon="mdi-database-search"
+      append-icon=""
+      @change="searchVideos"
     >
     </v-autocomplete>
     <v-tabs centered>
@@ -70,9 +70,7 @@ import axios from 'axios'
       return {
         videos: [],
         searchItems: [],
-        query: {
-          title_cont: ''
-        }
+        query: ''
       }
     },
     mounted() {
@@ -82,6 +80,15 @@ import axios from 'axios'
           this.videos = res.data;
           res.data.map((item) => this.searchItems.push(item.title));
         })
+    },
+    methods: {
+      searchVideos() {
+        axios
+          .get(`${process.env.VUE_APP_ENDPOINT}/v1/search`, { params: { query: this.query }})
+          .then(res => {
+            this.videos = res.data[0].videos;
+          })
+      }
     }
   }
 </script>
