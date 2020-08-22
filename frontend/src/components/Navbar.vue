@@ -17,7 +17,12 @@
           <router-link :to="{ name: 'About' }">
             <v-list-item>
                 <v-list-item-content>
-                  <v-list-item-title>このサイトについて</v-list-item-title>
+                  <v-list-item-title>
+                    <v-btn icon>
+                      <v-icon>mdi-help-circle-outline</v-icon>
+                    </v-btn>
+                    このサイトについて
+                  </v-list-item-title>
                 </v-list-item-content>
             </v-list-item>
           </router-link>
@@ -51,7 +56,12 @@
             <router-link :to="{ name: 'Login' }">
               <v-list-item>
                   <v-list-item-content>
-                    <v-list-item-title>ログイン</v-list-item-title>
+                    <v-list-item-title>
+                      <v-btn icon>
+                        <v-icon>mdi-login-variant</v-icon>
+                      </v-btn>
+                      ログイン
+                    </v-list-item-title>
                   </v-list-item-content>
               </v-list-item>
             </router-link>
