@@ -1,5 +1,16 @@
 <template>
   <div>
+    <v-autocomplete
+      v-model="query.title_cont"
+      :items="searchItems"
+      cache-items
+      class="mx-4"
+      hide-details
+      prepend-icon="mdi-database-search"
+      label="毎週キングコングの動画を検索"
+      append-icon
+    >
+    </v-autocomplete>
     <v-tabs centered>
       <v-tab to="/">動画一覧</v-tab>
       <v-tab to="/playlists">プレイリスト一覧</v-tab>
@@ -53,12 +64,15 @@
 
 <script>
 import axios from 'axios'
-
   export default {
     name: 'VideoList',
     data() {
       return {
         videos: [],
+        searchItems: [],
+        query: {
+          title_cont: ''
+        }
       }
     },
     mounted() {
@@ -66,6 +80,7 @@ import axios from 'axios'
         .get(`${process.env.VUE_APP_ENDPOINT}/v1/videos`)
         .then(res => {
           this.videos = res.data;
+          res.data.map((item) => this.searchItems.push(item.title));
         })
     }
   }
