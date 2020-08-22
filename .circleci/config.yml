@@ -7,6 +7,10 @@ jobs:
     steps:
       - checkout:
           path: ~/kingkong_playlist
+      - restore_cache:
+          keys:
+            - kingkong_playlist-{{ checksum "Gemfile.lock" }}
+            - kingkong_playlist-
       - run:
           command: |
             gem update --system
