@@ -38,8 +38,12 @@ $ yarn
 ```
 
 ```shell
-# root
-$ foreman start -f Procfile.dev
+$ cd backend/
+$ rails s
+
+$ cd frontend/
+$ npm run serve
+-> http://localhost:8080
 ```
 
 動画の保存処理を行う場合は、Youtube APIキーを `.env`で設定していただく必要があります。

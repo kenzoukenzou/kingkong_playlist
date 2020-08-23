@@ -1,2 +1,0 @@
-web: cd backend && rails s -p 3000
-vue: cd frontend && npm run serve
