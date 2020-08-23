@@ -3,14 +3,20 @@
     <v-autocomplete
       v-model="query"
       :items="searchItems"
-      item-text="Description"
-      item-value="API"
+      persistent-hint
       label="毎週キングコングの動画を検索"
-      prepend-icon="mdi-database-search"
+      prepend-icon="mdi-magnify"
       append-icon=""
       @change="searchVideos"
     >
+      <template v-slot:append-outer>
+        <v-icon @click="clearSearch">
+          mdi-close-circle
+        </v-icon>
+      </template>
     </v-autocomplete>
+
+
     <v-tabs centered>
       <v-tab to="/">動画一覧</v-tab>
       <v-tab to="/playlists">プレイリスト一覧</v-tab>
@@ -74,12 +80,7 @@ import axios from 'axios'
       }
     },
     mounted() {
-      axios
-        .get(`${process.env.VUE_APP_ENDPOINT}/v1/videos`)
-        .then(res => {
-          this.videos = res.data;
-          res.data.map((item) => this.searchItems.push(item.title));
-        })
+      this.getVideos()
     },
     methods: {
       searchVideos() {
@@ -88,6 +89,18 @@ import axios from 'axios'
           .then(res => {
             this.videos = res.data[0].videos;
           })
+      },
+      getVideos() {
+        axios
+          .get(`${process.env.VUE_APP_ENDPOINT}/v1/videos`)
+          .then(res => {
+            this.videos = res.data;
+            res.data.map((item) => this.searchItems.push(item.title));
+          })
+      },
+      clearSearch() {
+        this.query = ''
+        this.getVideos()
       }
     }
   }
