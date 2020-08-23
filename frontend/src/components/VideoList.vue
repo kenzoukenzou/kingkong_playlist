@@ -4,16 +4,13 @@
       v-model="query"
       :items="searchItems"
       persistent-hint
+      clearable
+      clear-icon="mdi-close-circle"
       label="毎週キングコングの動画を検索"
       prepend-icon="mdi-magnify"
       append-icon=""
       @change="searchVideos"
     >
-      <template v-slot:append-outer>
-        <v-icon @click="clearSearch">
-          mdi-close-circle
-        </v-icon>
-      </template>
     </v-autocomplete>
 
 
@@ -98,10 +95,6 @@ import axios from 'axios'
             res.data.map((item) => this.searchItems.push(item.title));
           })
       },
-      clearSearch() {
-        this.query = ''
-        this.getVideos()
-      }
     }
   }
 </script>
