@@ -3,5 +3,6 @@ Rails.application.routes.draw do
     resources :videos
     resources :bookmarks
     resources :playlists
+    resources :search, only: :index
   end
 end
