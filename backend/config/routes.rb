@@ -4,5 +4,6 @@ Rails.application.routes.draw do
     resources :bookmarks
     resources :playlists
     resources :search, only: :index
+    resources :sessions, only: %i[create destroy]
   end
 end
