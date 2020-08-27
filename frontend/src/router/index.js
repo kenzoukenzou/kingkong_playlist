@@ -8,7 +8,7 @@ import Playlists from '@/components/Playlists'
 import PlaylistShow from '@/components/PlaylistShow'
 import About from '@/components/About'
 import Login from '@/components/Login'
-import firebase from '../plugins/firebase'
+// import firebase from '../plugins/firebase'
 
 Vue.use(VueRouter)
 
@@ -37,29 +37,30 @@ Vue.use(VueRouter)
     path: '/videos/new',
     name: 'VideoNew',
     component: VideoNew,
-    beforeEnter: (to, from, next) => {
-      firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-          next()
-        } else {
-          next({ name: 'Login' })
-        }
-      })
-    },
+    // TODO: 新しい認証の仕組みでガードする
+    // beforeEnter: (to, from, next) => {
+    //   firebase.auth().onAuthStateChanged((user) => {
+    //     if (user) {
+    //       next()
+    //     } else {
+    //       next({ name: 'Login' })
+    //     }
+    //   })
+    // },
   },
   {
     path: '/playlists/new',
     name: 'PlaylistNew',
     component: PlaylistNew,
-    beforeEnter: (to, from, next) => {
-      firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-          next()
-        } else {
-          next({ name: 'Login' })
-        }
-      })
-    },
+    // beforeEnter: (to, from, next) => {
+    //   firebase.auth().onAuthStateChanged((user) => {
+    //     if (user) {
+    //       next()
+    //     } else {
+    //       next({ name: 'Login' })
+    //     }
+    //   })
+    // },
   },
   {
     path: '/about',
