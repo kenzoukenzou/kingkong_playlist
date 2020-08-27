@@ -6,10 +6,12 @@ import VueYoutube from 'vue-youtube'
 import moment from 'moment'
 import { store } from './store/store'
 import authCheck from './plugins/authCheck'
+import VueCookie from 'vue-cookie'
 
 Vue.config.productionTip = false
 Vue.use(VueYoutube)
 Vue.use(authCheck)
+Vue.use(VueCookie)
 
 // Filters
 Vue.filter('truncate', function(value, length){
