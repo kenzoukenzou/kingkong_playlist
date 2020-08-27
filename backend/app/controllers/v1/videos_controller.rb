@@ -1,5 +1,6 @@
 class V1::VideosController < ApplicationController
   before_action :set_video, only: %i[show destroy]
+  before_action :authenticate_user!, only: %i[create destroy]
 
   def index
     videos = Video.order(published_at: :desc)

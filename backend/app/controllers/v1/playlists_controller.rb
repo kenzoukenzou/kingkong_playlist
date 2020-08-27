@@ -1,6 +1,7 @@
 class V1::PlaylistsController < ApplicationController
   before_action :set_playlist, only: %i[destroy show]
-
+  before_action :authenticate_user!, only: %i[create destroy]
+  
   def index
     render json: [
       all_playlists: Playlist.order(:id),
