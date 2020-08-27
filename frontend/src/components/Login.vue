@@ -21,6 +21,7 @@
 
 <script>
 import axios from 'axios'
+import { store } from "../store/store"
 
 export default {
   name: 'Login',
@@ -39,7 +40,9 @@ export default {
       axios.defaults.withCredentials = true
       axios
         .post(`${process.env.VUE_APP_ENDPOINT}/v1/sessions`, this.session)
-        .then(() => {
+        .then((res) => {
+          const user = res.data;
+          store.commit('setUser', user);
           this.$router.push('/');
         })
         .catch((error) => {
