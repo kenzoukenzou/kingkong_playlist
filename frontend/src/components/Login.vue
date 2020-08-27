@@ -3,13 +3,13 @@
     <p class="grey--text">管理者以外はログインできません。</p>
     <v-text-field
       label="Email"
-      v-model="email"
+      v-model="session.email"
       required
     >
     </v-text-field>
     <v-text-field
       label="Password"
-      v-model="password"
+      v-model="session.password"
       required
       type="password"
     >
@@ -19,23 +19,24 @@
 </template>
 
 <script>
-import firebase from '@/plugins/firebase';
+import axios from 'axios'
 
 export default {
   name: 'Login',
   data() {
     return {
-      email: '',
-      password: ''
+      session: {
+        email: '',
+        password: ''
+      }
     }
   },
   methods: {
     login() {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(this.email, this.password)
-        .then(() => {
-          this.$router.push("/");
+      axios
+        .post(`${process.env.VUE_APP_ENDPOINT}/v1/sessions`, this.session)
+        .then(res => {
+          console.log(res)
         })
     }
   }
