@@ -4,7 +4,6 @@ class V1::SessionsController < ApplicationController
     # has_secure_passwordを使うことでauthenticateメソッドが使えるようになる
     # ref: https://api.rubyonrails.org/classes/ActiveModel/SecurePassword/ClassMethods.html
     if user && user.authenticate(params[:session][:password])
-      session[:user_id] = user.id
       cookies.permanent.signed[:user_id] = user.id
       render json: user, status: :created
     else
@@ -12,5 +11,7 @@ class V1::SessionsController < ApplicationController
     end
   end
 
-  def destroy; end
+  def destroy
+    cookies.delete(:user_id)
+  end
 end

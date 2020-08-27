@@ -74,7 +74,8 @@
 </template>
 
 <script>
-import firebase from '@/plugins/firebase'
+import axios from 'axios'
+import { store } from "../store/store"
 
 export default {
   name: 'Navbar',
@@ -85,11 +86,12 @@ export default {
   },
   methods: {
     signOut() {
-      firebase.auth().signOut().then(() => {
-        this.$router.push('/login');
-      }).catch((error) =>{
-        console.log(error);
-      })
+      axios
+        .delete(`${process.env.VUE_APP_ENDPOINT}/v1/logout`)
+        .then(() => {
+          this.$router.push('/login');
+          store.commit('setUser', null);
+        })
     }
   },
   computed: {
