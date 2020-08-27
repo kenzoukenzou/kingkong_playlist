@@ -33,6 +33,8 @@ export default {
   },
   methods: {
     login() {
+      // refs: https://qiita.com/hxrxchang/items/d51a27f486fcd1612dbf
+      axios.defaults.withCredentials = true
       axios
         .post(`${process.env.VUE_APP_ENDPOINT}/v1/sessions`, this.session)
         .then(res => {
