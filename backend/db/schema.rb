@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_11_130330) do
+ActiveRecord::Schema.define(version: 2020_08_27_064900) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.text "content", null: false
@@ -27,6 +27,12 @@ ActiveRecord::Schema.define(version: 2020_08_11_130330) do
     t.string "title", null: false
     t.text "description"
     t.string "thumbnail"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
