@@ -1,6 +1,7 @@
 <template>
   <div>
-    <v-form @submit="addVideo">
+    <v-form @submit.prevent="addVideo">
+      <p class="red--text">{{ message }}</p>
       <v-text-field
         label="YoutubeID"
         placeholder="https://youtube.com/xxx"
@@ -36,7 +37,8 @@ export default {
       videos: [],
       video: {
         youtube_key: ''
-      }
+      },
+      message: ''
     }
   },
   methods: {
@@ -46,6 +48,9 @@ export default {
         .then(
           this.$router.push({ name: 'VideoNew' })
         )
+        .catch((error) => {
+          this.message = error.message;
+        })
     },
     deleteVideo: function(id) {
       axios

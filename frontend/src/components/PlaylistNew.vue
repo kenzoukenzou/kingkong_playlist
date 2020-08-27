@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-form @submit.prevent="addPlaylist">
+      <p class="red--text">{{ message }}</p>
       <v-text-field
         placeholder="プレイリストのタイトル"
         required
@@ -35,7 +36,8 @@ export default {
       playlists: [],
       playlist: {
         title: ''
-      }
+      },
+      message: ''
     }
   },
   name: 'PlaylistNew',
@@ -49,6 +51,9 @@ export default {
         .then(() => {
           this.playlist.title = '';
           this.updatePlaylists();
+        })
+        .catch((error) => {
+          this.message = error.message;
         })
     },
     updatePlaylists() {
