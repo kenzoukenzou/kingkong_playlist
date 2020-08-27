@@ -6,4 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Video.create(title: '【衝撃】ロレックスからの…', url: 'https://www.youtube.com/watch?v=HcFrYRFu2-w', thumbnail: 'https://img.youtube.com/vi/HcFrYRFu2-w/0.jpg')
+User.create(email: 'test1@example.com', password: 'password')
+User.create(email: 'test2@example.com', password: 'password')
+User.create(email: 'test3@example.com', password: 'password')
