@@ -6,8 +6,9 @@ class V1::SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
       cookies.permanent.signed[:user_id] = user.id
-      render json: user
+      render json: user, status: :created
     else
+      render json: { error: 'ログインに失敗しました。' }, status: :unauthorized
     end
   end
 

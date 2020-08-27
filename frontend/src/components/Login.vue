@@ -1,6 +1,7 @@
 <template>
   <v-form class="mt-3">
     <p class="grey--text">管理者以外はログインできません。</p>
+    <p class="red--text">{{ message }}</p>
     <v-text-field
       label="Email"
       v-model="session.email"
@@ -28,7 +29,8 @@ export default {
       session: {
         email: '',
         password: ''
-      }
+      },
+      message: ''
     }
   },
   methods: {
@@ -37,8 +39,12 @@ export default {
       axios.defaults.withCredentials = true
       axios
         .post(`${process.env.VUE_APP_ENDPOINT}/v1/sessions`, this.session)
-        .then(res => {
-          console.log(res)
+        .then(() => {
+          this.$router.push('/');
+        })
+        .catch((error) => {
+          // TODO: エラーメッセージ適切なやつを出したい
+          this.message = error.message;
         })
     }
   }
