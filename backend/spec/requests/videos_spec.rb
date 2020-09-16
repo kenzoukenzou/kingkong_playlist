@@ -7,8 +7,7 @@ describe "VideoAPI" do
     }
     it do
       get v1_videos_path
-      # expect(response.status).to eq 200
-      expect(response.status).to eq 300
+      expect(response.status).to eq 200
     end
   end
 
