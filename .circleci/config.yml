@@ -31,6 +31,8 @@ jobs:
       - store_test_results:
           path: /tmp/test-results
       - slack/status:
+          fail_only: true
+          mentions: $KENZO_USER_ID
           channel: circleci
 
 orbs:
