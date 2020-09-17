@@ -33,6 +33,7 @@ jobs:
       - slack/status:
           fail_only: true
           mentions: $KENZO_USER_ID
+          only_for_branches: master
           channel: circleci
 
 orbs:
