@@ -17,8 +17,8 @@ class UploadNewVideo
       youtube_key = results['items'].first['id']['videoId']
       video.save_with_youtube_data({ youtube_key: youtube_key })
     rescue => e
-      Rails.logger.error e.message
-      puts 'バッチ処理に失敗しました。処理を見直してください。'
+      Rollbar.error(e)
+      raise e
     end
 
     puts 'バッチ処理を終了します。'
