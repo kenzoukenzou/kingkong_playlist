@@ -8,3 +8,8 @@
 
 # 最新の動画40件をアップロードするバッチ処理
 UploadVideos.execute
+
+# プレイリストを作成
+3.times do |n|
+  Playlist.create(title: "Sample Playlist #{n}")
+end
