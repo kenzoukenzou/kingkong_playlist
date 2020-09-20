@@ -28,6 +28,7 @@
 # Backend
 $ cd backend/
 $ rails db:create db:migrate
+$ rails db:seed
 $ bundle install
 ```
 
