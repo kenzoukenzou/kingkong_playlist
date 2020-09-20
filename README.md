@@ -42,7 +42,7 @@ $ cd backend/
 $ rails s
 
 $ cd frontend/
-$ npm run serve
+$ yarn run serve
 # http://localhost:8080
 ```
 
