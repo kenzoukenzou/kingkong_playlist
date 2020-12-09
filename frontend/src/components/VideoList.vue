@@ -1,5 +1,7 @@
 <template>
   <div>
+
+    <!-- Search Form -->
     <v-autocomplete
       v-model="query"
       :items="searchItems"
@@ -13,11 +15,13 @@
     >
     </v-autocomplete>
 
-
+    <!-- Tab -->
     <v-tabs centered>
       <v-tab to="/">動画一覧</v-tab>
       <v-tab to="/playlists">プレイリスト一覧</v-tab>
     </v-tabs>
+
+    <!-- 動画一覧 -->
     <v-row>
       <template v-if="videos && videos.length > 0">
         <v-col class="col-12 col-lg-3 col-md-4" v-for="video in videos" :key="video.id">
@@ -35,6 +39,9 @@
             <v-card-subtitle class="pb-0">{{ video.published_at | formatDateTime }}</v-card-subtitle>
             <v-card-text class="text--primary pb-0">
               <div>{{ video.title | truncate(15) }}</div>
+              <div class="grey--text">
+                コメント数 {{ video.bookmarks.length }}
+              </div>
             </v-card-text>
             <v-card-actions>
                 <router-link :to="{ name: 'VideoShow', params: { id: video.id } }">
@@ -49,6 +56,8 @@
           </v-card>
         </v-col>
       </template>
+
+      <!-- ロードする間、skeletonを表示 -->
       <template v-else>
         <v-col class="col-lg-3 col-md-4 col-12" v-for="n in 20" :key="n">
           <v-card
@@ -77,7 +86,7 @@ import axios from 'axios'
       }
     },
     mounted() {
-      this.getVideos()
+      this.getVideos();
     },
     methods: {
       searchVideos() {
