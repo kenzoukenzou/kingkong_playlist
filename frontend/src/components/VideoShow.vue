@@ -3,7 +3,7 @@
     <v-row>
       <v-col class="col-12 col-lg-7 col-md-7">
         <!-- Video -->
-        <div class="video-container">
+        <div class="video-container mb-8">
           <youtube
             :video-id="video.youtube_key"
             ref="youtube"
