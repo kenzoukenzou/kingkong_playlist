@@ -3,7 +3,7 @@ class V1::VideosController < ApplicationController
 
   def index
     videos = Video.order(published_at: :desc)
-    render json: videos
+    render json: videos, include: :bookmarks
   end
 
   def show
