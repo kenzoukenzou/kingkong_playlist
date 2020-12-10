@@ -3,13 +3,15 @@
     <v-row>
       <v-col class="col-12 col-lg-7 col-md-7">
         <!-- Video -->
-        <youtube
-          :video-id="video.youtube_key"
-          ref="youtube"
-          :player-vars="palyerVars"
-          class="mt-4"
-        >
-        </youtube>
+        <div class="video-container">
+          <youtube
+            :video-id="video.youtube_key"
+            ref="youtube"
+            :player-vars="palyerVars"
+            class="mt-4"
+          >
+          </youtube>
+        </div>
 
         <!-- Bookmarks -->
         <template v-if="bookmarks && bookmarks.length > 0">
@@ -173,3 +175,17 @@ export default {
   }
 }
 </script>
+
+<style>
+  .video-container {
+    position: relative;
+    padding-bottom: 52.25%;
+  }
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>
