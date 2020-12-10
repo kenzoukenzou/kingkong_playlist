@@ -50,10 +50,14 @@
                   </v-btn>
                 </router-link>
 
-                <!-- TODO: Bookmarkが1件以上あるときの条件分岐 -->
-                <v-icon small color="blue-grey darken-2">
-                  mdi-comment
-                </v-icon>
+                <template v-if="video.bookmarks.length > 0">
+                  <v-icon small color="blue-grey">
+                    mdi-chat
+                  </v-icon>
+                  <span class="grey--text body-2">
+                    {{ video.bookmarks.length }}
+                  </span>
+                </template>
             </v-card-actions>
           </v-card>
         </v-col>
