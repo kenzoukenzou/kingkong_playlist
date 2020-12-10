@@ -53,3 +53,13 @@ $ yarn run serve
 backend/.env
 YOUTUBE_API_KEY=xxx
 ```
+
+## デプロイ
+
+```shell
+$ cd backend/
+$ git push heroku master
+$ cd frontend/
+$ yarn run build
+$ firebase deploy
+```
