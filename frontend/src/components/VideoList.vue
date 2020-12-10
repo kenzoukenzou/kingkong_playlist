@@ -39,9 +39,6 @@
             <v-card-subtitle class="pb-0">{{ video.published_at | formatDateTime }}</v-card-subtitle>
             <v-card-text class="text--primary pb-0">
               <div>{{ video.title | truncate(15) }}</div>
-              <div class="grey--text">
-                コメント数 {{ video.bookmarks.length }}
-              </div>
             </v-card-text>
             <v-card-actions>
                 <router-link :to="{ name: 'VideoShow', params: { id: video.id } }">
@@ -52,6 +49,11 @@
                     Explore
                   </v-btn>
                 </router-link>
+
+                <!-- TODO: Bookmarkが1件以上あるときの条件分岐 -->
+                <v-icon small color="blue-grey darken-2">
+                  mdi-comment
+                </v-icon>
             </v-card-actions>
           </v-card>
         </v-col>
