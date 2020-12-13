@@ -1,4 +1,4 @@
-<!--Playlist詳細ページでは出力内容が異なるので共通化しない -->
+<!-- Playlist詳細ページでは出力内容が異なるので共通化しない -->
 <template>
   <v-card outlined id="scroll-target" style="max-height: 250px" class="overflow-y-auto">
     <v-list
@@ -10,7 +10,7 @@
           v-for="bookmark in bookmarks"
           :key="bookmark.id"
         >
-          <v-list-item-content>
+          <v-list-item-content @click="startOnTime(bookmark.time)">
             <v-list-item-subtitle @click="startOnTime(bookmark.time)" class="purple--text">{{ bookmark.time | formatTime }}</v-list-item-subtitle>
             <v-list-item-title @click="startOnTime(bookmark.time)">{{ bookmark.content }}</v-list-item-title>
             <v-list-item-subtitle>{{ bookmark.playlist.title }}</v-list-item-subtitle>
