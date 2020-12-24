@@ -8,8 +8,7 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     if Rails.env.production?
-      # origins 'https://playlist-2bf49.web.app'
-      origins 'https://kingkong-playlist.com'
+      origins 'https://playlist-2bf49.web.app', 'https://kingkong-playlist.com'
     else
       origins 'http://localhost:8080'
     end
